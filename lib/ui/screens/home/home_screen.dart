@@ -6,6 +6,7 @@ import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/home/home_view_model.dart';
+import 'package:pickmed/ui/screens/medicine_list/medicine_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -64,32 +65,74 @@ class HomeScreen extends StatelessWidget {
                             style: style22,
                           ),
                           button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MedicineScreen(
+                                            title: 'Pain Relievers',
+                                          )));
+                            },
                             text: 'Pain Relievers',
                             boxColor: lightRedColor,
                           ),
                           button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MedicineScreen(
+                                            title: 'Antihistamine / Allergy',
+                                          )));
+                            },
                             text: 'Antihistamine / Allergy',
                             boxColor: lightBlueColor,
                           ),
                           button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MedicineScreen(
+                                            title: 'Antacids',
+                                          )));
+                            },
                             text: 'Antacids',
                             boxColor: lightRedColor,
                           ),
                           button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MedicineScreen(
+                                            title: 'Cough / Cold Medicines',
+                                          )));
+                            },
                             text: 'Cough / Cold Medicines',
                             boxColor: lightBlueColor,
                           ),
                           button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MedicineScreen(
+                                            title: 'Digestive Aids',
+                                          )));
+                            },
                             text: 'Digestive Aids',
                             boxColor: lightRedColor,
                           ),
                           button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MedicineScreen(
+                                            title: 'Others',
+                                          )));
+                            },
                             text: 'Others',
                             boxColor: lightBlueColor,
                           ),

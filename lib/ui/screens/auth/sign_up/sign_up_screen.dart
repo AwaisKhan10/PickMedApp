@@ -12,6 +12,7 @@ import 'package:pickmed/ui/custom_widgets/buttons/custom_back_button.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/auth/sign_up/sign_view_model.dart';
+import 'package:pickmed/ui/screens/root/root_screen.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -146,10 +147,10 @@ class SignUpScreen extends StatelessWidget {
                         child: CustomButton(
                           borderRadius: BorderRadius.circular(25.r),
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => RootScreen()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RootScreen()));
                           },
                           text: 'Create Account',
                           boxColor: brownColor,

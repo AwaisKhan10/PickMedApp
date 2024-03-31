@@ -5,6 +5,7 @@ import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/ui/custom_widgets/custom__shopping_cart.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
+import 'package:pickmed/ui/screens/checkout/checkout_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
 import 'package:pickmed/ui/screens/shopping_cart/shopping_cart_view_model.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class ShoppingCartcreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 50.h,
+                    height: 20.h,
                   ),
                   Expanded(
                     child: ListView.separated(
@@ -64,7 +65,12 @@ class ShoppingCartcreen extends StatelessWidget {
                   SizedBox(
                     height: 20.h,
                   ),
-                  checkoutButton(onPressed: () {}),
+                  checkoutButton(onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CheckoutScreen()));
+                  }),
                 ],
               ),
             ),

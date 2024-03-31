@@ -6,6 +6,7 @@ import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_back_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
+import 'package:pickmed/ui/screens/order_status/order_status_screen.dart';
 import 'package:pickmed/ui/screens/profile/about_us/about_us_screen.dart';
 import 'package:pickmed/ui/screens/profile/my_profile/my_profile_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_view_model.dart';
@@ -77,8 +78,10 @@ class ProfileScreen extends StatelessWidget {
                         title: 'My Order',
                         img: 'order',
                         onPressed: () {
-                          //            Navigator.push(
-                          // context, MaterialPageRoute(builder: (context) => SignInScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OrderStatusScreen()));
                         }),
 
                     ///
