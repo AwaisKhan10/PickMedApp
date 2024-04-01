@@ -8,6 +8,7 @@ import 'package:pickmed/core/model/medicine_type.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/medicine_list/medicine_detail/medicine_detail_view_model.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
+import 'package:pickmed/ui/screens/shopping_cart/shopping_cart_screen.dart';
 import 'package:provider/provider.dart';
 
 class MedicineDetailScreen extends StatelessWidget {
@@ -143,26 +144,32 @@ class MedicineDetailScreen extends StatelessWidget {
               ],
             ),
           ),
-          floatingActionButton: Container(
-            padding: const EdgeInsets.all(20),
-            margin: const EdgeInsets.only(left: 230, bottom: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.r),
-              color: greenColor,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  'Add to Cart',
-                  style: style18.copyWith(color: whiteColor),
-                ),
-                Image.asset(
-                  "$staticAssets/shopping-cart.png",
-                  scale: 4,
-                  color: whiteColor,
-                ),
-              ],
+          floatingActionButton: InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ShoppingCartcreen()));
+            },
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.only(left: 230, bottom: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.r),
+                color: greenColor,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'Add to Cart',
+                    style: style18.copyWith(color: whiteColor),
+                  ),
+                  Image.asset(
+                    "$staticAssets/shopping-cart.png",
+                    scale: 4,
+                    color: whiteColor,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
