@@ -4,6 +4,7 @@
 /// [busy] : When there is some process(loading data, performing
 /// any time taking task) going on and to block new process requests.
 ///
+library;
 
 enum ViewState {
   idle,

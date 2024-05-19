@@ -1,8 +1,8 @@
-class LoginBody {
+class SignInBody {
   String? email;
   String? password;
 
-  LoginBody({this.email, this.password});
+  SignInBody({this.email, this.password});
 
   toJson() => {
         'email': email,

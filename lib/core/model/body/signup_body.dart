@@ -6,19 +6,15 @@ class SignUpBody {
   String? email;
   String? password;
   String? name;
-  String? location;
-  String? gender;
+  String? address;
   String? phone;
-  File? image;
 
   SignUpBody({
     this.email,
     this.password,
-    this.gender,
-    this.location,
     this.name,
     this.phone,
-    this.image,
+    this.address,
     // this.fcmToken,
   });
 
@@ -27,8 +23,7 @@ class SignUpBody {
       'email': this.email,
       'password': this.password,
       'name': this.name,
-      'location': this.location,
-      'gender': this.gender,
+      'address': this.address,
       'phone': this.phone,
     };
   }

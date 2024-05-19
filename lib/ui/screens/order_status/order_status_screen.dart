@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// ignore_for_file: use_key_in_widget_constructors
 
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:im_stepper/stepper.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';

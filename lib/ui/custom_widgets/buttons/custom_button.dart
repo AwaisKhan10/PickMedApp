@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 

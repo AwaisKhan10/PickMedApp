@@ -1,15 +1,15 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
-import 'package:pickmed/ui/custom_widgets/buttons/custom_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/home/home_view_model.dart';
 import 'package:pickmed/ui/screens/medicine_list/medicine_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../../core/constants/text_style.dart';
 
