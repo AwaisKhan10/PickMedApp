@@ -1,8 +1,10 @@
 // ignore_for_file: avoid_print, unused_field, prefer_final_fields
 
+import 'package:pickmed/core/model/body/login_body.dart';
 import 'package:pickmed/core/model/body/signup_body.dart';
 import 'package:pickmed/core/model/response/auth_response.dart';
 import 'package:pickmed/core/model/response/request_response.dart';
+import 'package:pickmed/core/model/response/user_profile_response.dart';
 import 'package:pickmed/core/model/user_profile.dart';
 import 'package:pickmed/core/services/api_services.dart';
 import 'package:pickmed/core/services/data_base_services.dart';
@@ -38,6 +40,26 @@ class AuthServices {
 
     if (response.success) {
       userProfile = UserProfile.fromJson(signUpBody.toJson());
+      _localStorageService.accessToken = response.accessToken;
+      // print(_localStorageService.accessToken);
+      // final fcmToken = await locator<NotificationsService>().getFcmToken();
+      // final deviceId = await DeviceInfoService().getDeviceId();
+      // await getUserProfile();
+      // await _updateFcmToken();
+      // await _dbService.addFcmToken(deviceId, fcmToken!);
+    }
+    return response;
+  }
+
+  ///
+  /// Sign Up
+  ///
+  loginUser(SignInBody signInBody) async {
+    final AuthResponse response;
+    response = await _dbService.loginWithEmailAndPassword(signInBody);
+
+    if (response.success) {
+      //  UserProfileResponse userProfileResponse = await _dbService.getUserProfile(response.)
       _localStorageService.accessToken = response.accessToken;
       // print(_localStorageService.accessToken);
       // final fcmToken = await locator<NotificationsService>().getFcmToken();

@@ -2,8 +2,10 @@
 
 class EndPoints {
   static const baseUrl = 'https://pickedme-49fbdf2c6c9f.herokuapp.com/';
-  static const sign_up = "auth/signup";
-  static const sign_in = "auth/signin";
+  static const sign_up = "auth/Sign_up";
+  static const sign_in = "auth/UserSignIn";
+  static const getUserbyId = "auth/userid";
+  static const updateUserbyId = "auth/update";
   // static const forgot_password = "auth/forgot_password";
   // static const set_new_password = "auth/set_new_password";
   // static const verify_email_otp = "auth/verify_email_otp";

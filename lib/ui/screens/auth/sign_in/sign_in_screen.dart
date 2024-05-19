@@ -62,6 +62,9 @@ class SignInScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 10.0, bottom: 25),
                         child: TextFormField(
                           style: style14,
+                          onChanged: (value) {
+                            model.signInBody.email = value;
+                          },
                           decoration: authFieldDecoration.copyWith(
                               suffixIcon: Image.asset(
                                 '$staticAssets/email.png',
@@ -78,6 +81,9 @@ class SignInScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 10.0, bottom: 15),
                         child: TextFormField(
                           style: style14,
+                          onChanged: (value) {
+                            model.signInBody.password = value;
+                          },
                           decoration: authFieldDecoration.copyWith(
                               suffixIcon: Image.asset(
                                 '$staticAssets/password.png',
@@ -119,10 +125,7 @@ class SignInScreen extends StatelessWidget {
                         child: CustomButton(
                           borderRadius: BorderRadius.circular(25.r),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RootScreen()));
+                            model.signUp(context);
                           },
                           text: 'Sign In',
                           boxColor: brownColor,

@@ -3,7 +3,11 @@ import 'package:pickmed/core/model/body/login_body.dart';
 import 'package:pickmed/core/model/body/signup_body.dart';
 import 'package:pickmed/core/model/response/auth_response.dart';
 import 'package:pickmed/core/model/response/request_response.dart';
+import 'package:pickmed/core/model/response/user_profile_response.dart';
+import 'package:pickmed/core/model/user_profile.dart';
 import 'package:pickmed/core/services/api_services.dart';
+
+import '../model/response/base_response.dart';
 
 class DatabaseService {
   final ApiServices _apiServices = ApiServices();
@@ -23,6 +27,20 @@ class DatabaseService {
       data: body.toJson(),
     );
     return AuthResponse.fromJson(response.data);
+  }
+
+  Future<UserProfileResponse> getUserProfile(String userid) async {
+    final RequestResponse response = await _apiServices.getRequest(
+        url: '${EndPoints.baseUrl}${EndPoints.getUserbyId}/$userid');
+    return UserProfileResponse.fromJson(response.data);
+  }
+
+  Future<ApiBaseResponse> updateUser(
+      String userid, UserProfile userProfile) async {
+    final RequestResponse response = await _apiServices.putRequest(
+        url: '${EndPoints.baseUrl}${EndPoints.updateUserbyId}/$userid',
+        data: userProfile.toJson());
+    return UserProfileResponse.fromJson(response.data);
   }
 
   // Future<AuthResponse> sendEmailOTP(String email) async {
