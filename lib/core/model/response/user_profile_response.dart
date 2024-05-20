@@ -12,8 +12,8 @@ class UserProfileResponse extends ApiBaseResponse {
 
   /// Named Constructor
   UserProfileResponse.fromJson(json) : super.fromJson(json) {
-    if (json['body'] != null) {
-      this.userProfile = UserProfile.fromJson(json["body"]);
+    if (json['user'] != null) {
+      this.userProfile = UserProfile.fromJson(json["user"]);
     }
   }
 }

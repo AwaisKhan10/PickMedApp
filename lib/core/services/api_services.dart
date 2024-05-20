@@ -103,7 +103,7 @@ class ApiServices {
   putRequest({required String url, data}) async {
     Dio dio = await launchDio();
     try {
-      final response = await dio.put("$url", data: data).catchError((e) {
+      final response = await dio.patch("$url", data: data).catchError((e) {
         debugPrint('Unexpected Error');
       });
 

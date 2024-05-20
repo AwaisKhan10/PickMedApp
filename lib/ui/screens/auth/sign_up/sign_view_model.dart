@@ -23,7 +23,6 @@ class SignUpViewModel extends BaseViewModel {
     setState(ViewState.busy);
     authResponse = await authServices.signUpUser(signUpBody);
     setState(ViewState.idle);
-
     if (authResponse.success) {
       Get.offAll(() => const RootScreen());
     } else {

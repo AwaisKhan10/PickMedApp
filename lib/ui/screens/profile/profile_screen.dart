@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
@@ -13,6 +12,8 @@ import 'package:pickmed/ui/screens/profile/profile_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -29,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
             ///
             body: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -48,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Text(
-                      'Full User Name',
+                      '${model.authService.userProfile.fullName}',
                       style: style22.copyWith(fontWeight: FontWeight.w400),
                     ),
                     SizedBox(

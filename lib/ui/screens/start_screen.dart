@@ -8,6 +8,8 @@ import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/auth/sign_up/sign_up_screen.dart';
 
 class StartScreen extends StatefulWidget {
+  const StartScreen({super.key});
+
   @override
   State<StartScreen> createState() => _StartScreenState();
 }

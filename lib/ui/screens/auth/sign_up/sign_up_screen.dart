@@ -14,12 +14,16 @@ import 'package:pickmed/ui/custom_widgets/buttons/custom_back_button.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/auth/sign_up/sign_view_model.dart';
-import 'package:pickmed/ui/screens/root/root_screen.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -30,8 +34,6 @@ class SignUpScreen extends StatelessWidget {
           // progressIndicator: CustomLoader(),
 
           child: Scaffold(
-            key: _scaffoldkey,
-
             ///
             /// Start Body
             ///
@@ -47,22 +49,17 @@ class SignUpScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomBackButton(
-                              color: blackColor,
-                            ),
-                            Text(
-                              "Create an Account",
-                              style: style25,
-                            ),
+                            // CustomBackButton(
+                            //   color: blackColor,
+                            // ),
+                            Text("Create an Account", style: style25),
                             Text(
                               "",
                               style: style25,
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: 40.h,
-                        ),
+                        SizedBox(height: 40.h),
 
                         ///
                         /// E-mail address
