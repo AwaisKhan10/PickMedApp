@@ -1,7 +1,5 @@
 // ignore_for_file: unnecessary_this
 
-import 'dart:io';
-
 class SignUpBody {
   String? email;
   String? password;
@@ -18,13 +16,13 @@ class SignUpBody {
     // this.fcmToken,
   });
 
-  toJson() async {
+  toJson() {
     return {
       'email': this.email,
       'password': this.password,
-      'name': this.name,
+      'fullname': this.name,
       'address': this.address,
-      'phone': this.phone,
+      'phoneno': this.phone,
     };
   }
 }

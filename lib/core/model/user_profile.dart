@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_this
 
+import 'package:flutter/material.dart';
+
 class UserProfile {
   String? id;
   String? email;
@@ -19,12 +21,12 @@ class UserProfile {
   UserProfile.fromJson(Map<String, dynamic> json) {
     try {
       this.email = json["email"];
-      this.fullName = json["fullName"];
-      this.phoneNumber = json["phoneNumber"];
-      this.password = json["password"];
+      this.fullName = json["fullname"];
+      this.phoneNumber = json["phoneno"];
       this.address = json["address"];
+      this.id = json["_id"];
     } catch (e) {
-      print("profile.FromJsonError => $e");
+      debugPrint("profile.FromJsonError => $e");
     }
   }
 
@@ -43,11 +45,11 @@ class UserProfile {
   //   return data;
   // }
 
-  toJson() async {
+  toJson() {
     return {
       "email": email,
-      "fullName": fullName,
-      "phoneNumber": phoneNumber,
+      "fullname": fullName,
+      "phoneno": phoneNumber,
       "address": address,
       "password": password
     };

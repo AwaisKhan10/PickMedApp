@@ -40,9 +40,9 @@ class SignInScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CustomBackButton(
-                            color: blackColor,
-                          ),
+                          // CustomBackButton(
+                          //   color: blackColor,
+                          // ),
                           Text(
                             "Sign In account",
                             style: style25,

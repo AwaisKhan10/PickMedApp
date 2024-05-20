@@ -5,10 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalStorageService {
   static SharedPreferences? _preferences;
 
-  LocalStorageService() {
-    // init();
-  }
-
   ///
   /// initializing instance
   ///
@@ -23,6 +19,7 @@ class LocalStorageService {
   static const String notificationsCountKey = 'snotificationsCount';
   static const String accessTokenKey = 'accessToken';
   static const String refreshTokenKey = 'refreshToken';
+  static const String userid = 'userid';
 
   ///
   /// Setters and getters
@@ -46,6 +43,9 @@ class LocalStorageService {
   ///
   dynamic get accessToken => _getFromDisk(accessTokenKey) ?? null;
   set accessToken(token) => _saveToDisk(accessTokenKey, token);
+
+  dynamic get getUserid => _getFromDisk(userid) ?? null;
+  set setUserid(token) => _saveToDisk(userid, token);
 
   ///
   /// get refresh token

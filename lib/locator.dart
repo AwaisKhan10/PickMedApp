@@ -10,8 +10,8 @@ GetIt locator = GetIt.instance;
 setupLocator() {
   // final _instance = await LocalStorageService.getInstance();
   // locator.registerSingleton(_instance);
-  locator.registerSingleton(AuthServices());
   locator.registerSingleton(LocalStorageService());
+  locator.registerSingleton(AuthServices());
   // locator.registerSingleton(NotificationsService());
   locator.registerSingleton(DatabaseService());
   locator.registerSingleton(ApiServices());

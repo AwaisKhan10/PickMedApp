@@ -5,12 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pickmed/core/constants/colors.dart';
+import 'package:pickmed/ui/screens/splash_screen.dart';
 import 'package:pickmed/ui/screens/start_screen.dart';
+
+import 'locator.dart';
 
 void main() async {
   // await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
-  // await setupLocator();
+  await setupLocator();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((value) => runApp(const MyApp()));
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
                 surfaceTintColor: Colors.transparent)
             // useMaterial3: true,
             ),
-        home: StartScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
