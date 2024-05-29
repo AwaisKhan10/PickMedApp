@@ -54,11 +54,13 @@ class _SplashScreenState extends State<SplashScreen> {
     ///checking if the user is login or not
     ///
     debugPrint('Login State: ${_authService.isLogin}');
-    if (_authService.isLogin) {
-      Get.off(() => const RootScreen());
-    } else {
-      Get.off(() => const StartScreen());
-    }
+    // if (_authService.isLogin) {
+    //   Get.off(() => const RootScreen());
+    // } else {
+    //   Get.off(() => const StartScreen());
+    // }
+
+    Get.off(() => const RootScreen());
   }
 
   @override

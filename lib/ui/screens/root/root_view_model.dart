@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pickmed/core/enums/view_state.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
 import 'package:pickmed/ui/screens/home/home_screen.dart';
+import 'package:pickmed/ui/screens/home/home_screen2.dart';
 import 'package:pickmed/ui/screens/shopping_cart/shopping_cart_screen.dart';
 
 class RootScreenViewModel extends BaseViewModel {
@@ -15,7 +16,9 @@ class RootScreenViewModel extends BaseViewModel {
   }
 
   List<Widget> allScreen = [
-    HomeScreen(),
+    HomeScreen2(),
+    // HomeScreen(),
+
     ShoppingCartcreen(),
   ];
 
