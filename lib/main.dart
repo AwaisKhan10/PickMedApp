@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/ui/screens/splash_screen.dart';
-import 'package:pickmed/ui/screens/start_screen.dart';
 
 import 'locator.dart';
 

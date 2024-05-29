@@ -58,7 +58,7 @@ class SignInScreen extends StatelessWidget {
                       ///
                       /// E-mail address
                       ///
-                      Padding(
+                      Padding( 
                         padding: const EdgeInsets.only(top: 10.0, bottom: 25),
                         child: TextFormField(
                           style: style14,
