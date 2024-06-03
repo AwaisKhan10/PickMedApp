@@ -6,7 +6,7 @@ class EndPoints {
   static const sign_in = "auth/UserSignIn";
   static const getUserbyId = "auth/userid";
   static const updateUserbyId = "auth/update";
-  // static const forgot_password = "auth/forgot_password";
+  static const AddMedicine = "medicine/title";
   // static const set_new_password = "auth/set_new_password";
   // static const verify_email_otp = "auth/verify_email_otp";
   // static const send_email_otp = "auth/send_email_otp";
