@@ -4,6 +4,7 @@ import 'package:pickmed/core/constants/app_end_points.dart';
 import 'package:pickmed/core/model/body/login_body.dart';
 import 'package:pickmed/core/model/body/signup_body.dart';
 import 'package:pickmed/core/model/medicine.dart';
+import 'package:pickmed/core/model/response/add_medicine_response.dart';
 import 'package:pickmed/core/model/response/auth_response.dart';
 import 'package:pickmed/core/model/response/request_response.dart';
 import 'package:pickmed/core/model/response/user_profile_response.dart';
@@ -52,6 +53,20 @@ class DatabaseService {
         data: medicine.toJson());
     log('medicine response ==> $response');
     return ApiBaseResponse.fromJson(response.data);
+  }
+
+  Future<MedicineResponse> getMadicins() async {
+    final RequestResponse response = await _apiServices.getRequest(
+        url: '${EndPoints.baseUrl}medicine/getAll-Medicines');
+    log('medicine response ==> ${response.data}');
+    return MedicineResponse.fromJson(response.data);
+  }
+
+  Future<MedicineResponse> getMadicinbyId(cat) async {
+    final RequestResponse response = await _apiServices.getRequest(
+        url: '${EndPoints.baseUrl}medicine/category/$cat');
+    log('medicine response ==> ${response.data}');
+    return MedicineResponse.fromJson2(response.data);
   }
 
   // Future<AuthResponse> sendEmailOTP(String email) async {

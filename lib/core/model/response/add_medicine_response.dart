@@ -1,19 +1,29 @@
-// // ignore_for_file: unnecessary_this, use_super_parameters
+// ignore_for_file: unnecessary_this, use_super_parameters
 
-// import 'package:pickmed/core/model/response/base_response.dart';
-// import 'package:pickmed/core/model/user_profile.dart';
+import 'package:pickmed/core/model/medicine.dart';
+import 'package:pickmed/core/model/response/base_response.dart';
+import 'package:pickmed/core/model/user_profile.dart';
 
-// class MedicineResponse extends ApiBaseResponse {
-//   UserProfile? userProfile;
+class MedicineResponse extends ApiBaseResponse {
+  List<Medicine> resp = [];
 
-//   /// Default constructor
-//   MedicineResponse(succes, {error, this.userProfile})
-//       : super(succes, error: error);
+  /// Default constructor
+  MedicineResponse(succes, {error, required this.resp})
+      : super(succes, error: error);
 
-//   /// Named Constructor
-//   MedicineResponse.fromJson(json) : super.fromJson(json) {
-//     if (json['user'] != null) {
-//       this.userProfile = UserProfile.fromJson(json["user"]);
-//     }
-//   }
-// }
+  /// Named Constructor
+  MedicineResponse.fromJson(json) : super.fromJson(json) {
+    if (json['medicines'] != null) {
+      for (var med in json['medicines']) {
+        resp.add(Medicine.fromJson(med));
+      }
+    }
+  }
+  MedicineResponse.fromJson2(json) : super.fromJson(json) {
+    if (json['medicines'] != null) {
+      for (var med in json['medicines']) {
+        resp.add(Medicine.fromJson2(med));
+      }
+    }
+  }
+}

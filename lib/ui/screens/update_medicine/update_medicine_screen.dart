@@ -2,15 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
-import 'package:pickmed/ui/screens/home/home_view_model.dart';
+import 'package:pickmed/core/enums/view_state.dart';
 import 'package:pickmed/ui/screens/update_medicine/alergy_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/antacids_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/cough_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/digestive_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/othere_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/pain_reliever.dart';
+import 'package:pickmed/ui/screens/update_medicine/update_madicin_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants/text_style.dart';
@@ -19,109 +21,132 @@ class UpdateMedicineScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => HomeViewModel(),
-        child: Consumer<HomeViewModel>(
-          builder: (context, model, child) => Scaffold(
-            ///
-            /// App Bar
-            ///
-            appBar: AppBar(
-              automaticallyImplyLeading: true,
-            ),
+        create: (context) => UpdateMadicinProvider(),
+        child: Consumer<UpdateMadicinProvider>(
+          builder: (context, model, child) => ModalProgressHUD(
+            inAsyncCall: model.state == ViewState.busy,
+            child: Scaffold(
+              ///
+              /// App Bar
+              ///
+              appBar: AppBar(
+                automaticallyImplyLeading: true,
+              ),
 
-            ///
-            /// Start Body
-            ///
-            body: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  ///
-                  /// Medicine Types
-                  ///
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Update Medicine',
-                              style: style22,
+              ///
+              /// Start Body
+              ///
+              body: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    ///
+                    /// Medicine Types
+                    ///
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'Update Medicine',
+                                style: style22,
+                              ),
                             ),
-                          ),
-                          30.verticalSpace,
-                          button(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PainRelieverScreen()));
-                            },
-                            text: 'Pain Relieveres',
-                            boxColor: lightBlueColor,
-                          ),
-                          button(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => AllergyScreen()));
-                            },
-                            text: 'Antihistamine / Allergy',
-                            boxColor: texfieldColor,
-                          ),
-                          button(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => AntacidsScreen()));
-                            },
-                            text: 'Antacids',
-                            boxColor: lightBlueColor,
-                          ),
-                          button(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CoughScreen()));
-                            },
-                            text: 'Cough / Cold Medicines',
-                            boxColor: texfieldColor,
-                          ),
-                          button(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DigestiveScreen()));
-                            },
-                            text: 'Digestive Aids',
-                            boxColor: lightBlueColor,
-                          ),
-                          button(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => OtherScreen()));
-                            },
-                            text: 'Others',
-                            boxColor: texfieldColor,
-                          ),
-                        ],
+                            30.verticalSpace,
+                            ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: model.medicins.length,
+                                primary: false,
+                                itemBuilder: (context, index) {
+                                  return button(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PainRelieverScreen(name: model.medicins[index].title,)));
+                                    },
+                                    text: model.medicins[index].title,
+                                    boxColor: lightBlueColor,
+                                  );
+                                }),
+
+                            // button(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) =>
+                            //                 PainRelieverScreen()));
+                            //   },
+                            //   text: 'Pain Relieveres',
+                            //   boxColor: lightBlueColor,
+                            // ),
+                            // button(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) => AllergyScreen()));
+                            //   },
+                            //   text: 'Antihistamine / Allergy',
+                            //   boxColor: texfieldColor,
+                            // ),
+                            // button(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) =>
+                            //                 AntacidsScreen()));
+                            //   },
+                            //   text: 'Antacids',
+                            //   boxColor: lightBlueColor,
+                            // ),
+                            // button(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) => CoughScreen()));
+                            //   },
+                            //   text: 'Cough / Cold Medicines',
+                            //   boxColor: texfieldColor,
+                            // ),
+                            // button(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) =>
+                            //                 DigestiveScreen()));
+                            //   },
+                            //   text: 'Digestive Aids',
+                            //   boxColor: lightBlueColor,
+                            // ),
+                            // button(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) => OtherScreen()));
+                            //   },
+                            //   text: 'Others',
+                            //   boxColor: texfieldColor,
+                            // ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
