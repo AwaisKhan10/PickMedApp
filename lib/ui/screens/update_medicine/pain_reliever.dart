@@ -1,22 +1,18 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
-import 'package:pickmed/core/constants/text_field_decoration.dart';
 import 'package:pickmed/core/constants/text_style.dart';
-import 'package:pickmed/ui/custom_widgets/custom_medicine_type.dart';
-import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/medicine_list/medicine_detail/medicine_screen.dart';
-import 'package:pickmed/ui/screens/medicine_list/medicine_view_model.dart';
-import 'package:pickmed/ui/screens/profile/profile_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/pain_reliever_provider.dart';
 import 'package:provider/provider.dart';
 
 class PainRelieverScreen extends StatelessWidget {
+  final name;
+
+  const PainRelieverScreen({super.key, required this.name});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -113,5 +109,3 @@ class PainRelieverScreen extends StatelessWidget {
     );
   }
 }
-
-

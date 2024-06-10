@@ -60,11 +60,11 @@ class HomeScreen extends StatelessWidget {
                           30.verticalSpace,
                           button(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PainRelieverScreen()));
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => PainRelieverScreen(),
+                              //     ));
                             },
                             text: 'Pain Relievers',
                             boxColor: lightBlueColor,

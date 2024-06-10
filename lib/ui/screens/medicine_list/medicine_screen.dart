@@ -86,12 +86,12 @@ class MedicineScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MedicineDetailScreen(
-                                        medicineType: model.medicinelist[index],
-                                      )));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => MedicineDetailScreen(
+                          //               medicineType: model.medicinelist[index],
+                          //             )));
                         },
                         child: CustomMedicineType(
                           medicineType: model.medicinelist[index],
