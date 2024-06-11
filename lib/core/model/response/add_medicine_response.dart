@@ -2,7 +2,6 @@
 
 import 'package:pickmed/core/model/medicine.dart';
 import 'package:pickmed/core/model/response/base_response.dart';
-import 'package:pickmed/core/model/user_profile.dart';
 
 class MedicineResponse extends ApiBaseResponse {
   List<Medicine> resp = [];

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
+import 'package:pickmed/core/model/medicine.dart';
 import 'package:pickmed/core/model/medicine_type.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/medicine_list/medicine_detail/medicine_detail_view_model.dart';
@@ -12,7 +13,7 @@ import 'package:pickmed/ui/screens/shopping_cart/shopping_cart_screen.dart';
 import 'package:provider/provider.dart';
 
 class MedicineDetailScreen extends StatelessWidget {
-  final MedicineType medicineType;
+  final Medicine medicineType;
 
   MedicineDetailScreen({required this.medicineType});
   @override
@@ -77,15 +78,14 @@ class MedicineDetailScreen extends StatelessWidget {
                                   spreadRadius: 0)
                             ],
                             image: DecorationImage(
-                                image: AssetImage(
-                                    '$dynamicAssets/${medicineType.imgUrl}.png'),
+                                image: AssetImage('$dynamicAssets/img2.png'),
                                 fit: BoxFit.cover)),
                       ),
                       SizedBox(
                         height: 20.h,
                       ),
                       Text(
-                        '${medicineType.medicineName}',
+                        '${medicineType.title}',
                         style: style18.copyWith(
                             fontWeight: FontWeight.w400, fontSize: 24),
                       ),
@@ -144,13 +144,18 @@ class MedicineDetailScreen extends StatelessWidget {
               ],
             ),
           ),
+          // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
           floatingActionButton: InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ShoppingCartcreen()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShoppingCartcreen(),
+                ),
+              );
             },
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.only(left: 230, bottom: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.r),
@@ -163,11 +168,11 @@ class MedicineDetailScreen extends StatelessWidget {
                     'Add to Cart',
                     style: style18.copyWith(color: whiteColor),
                   ),
-                  Image.asset(
-                    "$staticAssets/shopping-cart.png",
-                    scale: 4,
-                    color: whiteColor,
-                  ),
+                  // Image.asset(
+                  //   "$staticAssets/shopping-cart.png",
+                  //   scale: 4,
+                  //   color: whiteColor,
+                  // ),
                 ],
               ),
             ),

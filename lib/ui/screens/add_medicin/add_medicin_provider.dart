@@ -21,7 +21,7 @@ class AddMedicineProvider extends BaseViewModel {
   List<String> items = [
     'Select Type',
     'pain relievers',
-    'antihistamine/allergy',
+    'anthistamine/allergy',
     'antacids',
     'cough/cold medicines',
     'digestive aids',
@@ -33,7 +33,7 @@ class AddMedicineProvider extends BaseViewModel {
     notifyListeners();
   }
 
-  addMedicine() async {
+  addMedicine(context) async {
     if (value == items.first || value.isEmpty) {
       Get.snackbar('Alert!!', 'category must be selected');
     } else {
@@ -42,7 +42,7 @@ class AddMedicineProvider extends BaseViewModel {
       res = await db.addMedicin(medicine);
       if (res.success == true) {
         Get.snackbar('Success', 'Medicine added successfully');
-        Get.back();
+        Navigator.pop(context);
       } else {
         Get.snackbar('Error!!', 'Error occured');
         setState(ViewState.idle);
