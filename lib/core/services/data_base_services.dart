@@ -54,6 +54,20 @@ class DatabaseService {
     log('medicine response ==> $response');
     return ApiBaseResponse.fromJson(response.data);
   }
+  Future<ApiBaseResponse> deleteMedicine(id) async {
+    final RequestResponse response = await _apiServices.deleteRequest(
+        url: '${EndPoints.baseUrl}medicine/delete/$id',);
+    log('medicine response ==> $response');
+    return ApiBaseResponse.fromJson(response.data);
+  }
+
+  Future<ApiBaseResponse> updateMedicin(Medicine medicine) async {
+    final RequestResponse response = await _apiServices.putRequest(
+        url: '${EndPoints.baseUrl}medicine/update/${medicine.id}',
+        data: medicine.toJson2());
+    log('medicine response ==> $response');
+    return ApiBaseResponse.fromJson(response.data);
+  }
 
   Future<MedicineResponse> getMadicins() async {
     final RequestResponse response = await _apiServices.getRequest(
@@ -62,7 +76,7 @@ class DatabaseService {
     return MedicineResponse.fromJson(response.data);
   }
 
-  Future<MedicineResponse> getMadicinbyId(cat) async {
+  Future<MedicineResponse> getMadicinbycategory(cat) async {
     final RequestResponse response = await _apiServices.getRequest(
         url: '${EndPoints.baseUrl}medicine/category/$cat');
     log('medicine response ==> ${response.data}');

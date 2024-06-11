@@ -6,11 +6,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/enums/view_state.dart';
-import 'package:pickmed/ui/screens/update_medicine/alergy_screen.dart';
-import 'package:pickmed/ui/screens/update_medicine/antacids_screen.dart';
-import 'package:pickmed/ui/screens/update_medicine/cough_screen.dart';
-import 'package:pickmed/ui/screens/update_medicine/digestive_screen.dart';
-import 'package:pickmed/ui/screens/update_medicine/othere_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/pain_reliever.dart';
 import 'package:pickmed/ui/screens/update_medicine/update_madicin_provider.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +57,7 @@ class UpdateMedicineScreen extends StatelessWidget {
                             30.verticalSpace,
                             ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: model.medicins.length,
+                                itemCount: model.cats.length,
                                 primary: false,
                                 itemBuilder: (context, index) {
                                   return button(
@@ -71,9 +66,11 @@ class UpdateMedicineScreen extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  PainRelieverScreen(name: model.medicins[index].title,)));
+                                                  PainRelieverScreen(
+                                                    name: model.cats[index],
+                                                  )));
                                     },
-                                    text: model.medicins[index].title,
+                                    text: model.cats[index],
                                     boxColor: lightBlueColor,
                                   );
                                 }),

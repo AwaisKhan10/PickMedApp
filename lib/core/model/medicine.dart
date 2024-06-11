@@ -28,6 +28,14 @@ class Medicine {
     };
   }
 
+  toJson2() {
+    return {
+      'title': this.title,
+      'price': this.price,
+      'description': this.description,
+    };
+  }
+
   Medicine.fromJson(Map<String, dynamic> json) {
     try {
       this.id = json["id"];
@@ -38,7 +46,7 @@ class Medicine {
   }
   Medicine.fromJson2(Map<String, dynamic> json) {
     try {
-      this.id = json["id"];
+      this.id = json["_id"];
       this.title = json["title"];
       this.categroy = json["categroy"];
       this.description = json["description"];

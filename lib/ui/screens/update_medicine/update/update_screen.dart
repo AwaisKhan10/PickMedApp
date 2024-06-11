@@ -7,19 +7,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/text_field_decoration.dart';
+import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/core/enums/view_state.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_back_button.dart';
 import 'package:pickmed/ui/screens/add_medicin/add_medicin_provider.dart';
+import 'package:pickmed/ui/screens/update_medicine/update/update_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/constants/text_style.dart';
+class UpdateScreen extends StatelessWidget {
+  final medId;
 
-class AddMedicinScreen extends StatelessWidget {
+  const UpdateScreen({super.key, required this.medId});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => AddMedicineProvider(),
-        child: Consumer<AddMedicineProvider>(
+        create: (context) => UpdateProvider(medId),
+        child: Consumer<UpdateProvider>(
           builder: (context, model, child) => ModalProgressHUD(
             inAsyncCall: model.state == ViewState.busy,
             child: Scaffold(
@@ -52,7 +55,7 @@ class AddMedicinScreen extends StatelessWidget {
                       RichText(
                           text: TextSpan(children: [
                         TextSpan(
-                            text: 'Add Medicine',
+                            text: 'Update Medicine',
                             style:
                                 style22.copyWith(fontWeight: FontWeight.w400)),
                         // TextSpan(
@@ -93,47 +96,45 @@ class AddMedicinScreen extends StatelessWidget {
                         ),
                       ),
                       // 10.verticalSpace,
-                      Container(
-                        // margin: EdgeInsets.symmetric(horizontal: 20),
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        decoration: BoxDecoration(
-                            color: whiteColor,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                color: Color(0xff828282), width: 0.6)),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: DropdownButton<String>(
-                            isExpanded: true,
-                            underline: Container(),
-                            style: style18.copyWith(
-                                color: texfieldColor,
-                                fontWeight: FontWeight.normal),
-                            dropdownColor: whiteColor,
-                            value: model.value,
-                            icon: Icon(
-                              Icons.arrow_forward_ios,
-                              color: blackColor,
-                              size: 15,
-                            ),
-                            onChanged: (val) {
-                              model.selecttype(val);
-                            },
-                            items: model.items
-                                .map(
-                                  (val) => DropdownMenuItem<String>(
-                                    value: val,
-                                    child: Text(
-                                      val,
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ),
-                      ),
-
-                      15.verticalSpace,
+                      // Container(
+                      //   // margin: EdgeInsets.symmetric(horizontal: 20),
+                      //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      //   decoration: BoxDecoration(
+                      //       color: whiteColor,
+                      //       borderRadius: BorderRadius.circular(15),
+                      //       border: Border.all(
+                      //           color: Color(0xff828282), width: 0.6)),
+                      //   child: Align(
+                      //     alignment: Alignment.center,
+                      //     child: DropdownButton<String>(
+                      //       isExpanded: true,
+                      //       underline: Container(),
+                      //       style: style18.copyWith(
+                      //           color: texfieldColor,
+                      //           fontWeight: FontWeight.normal),
+                      //       dropdownColor: whiteColor,
+                      //       value: model.value,
+                      //       icon: Icon(
+                      //         Icons.arrow_forward_ios,
+                      //         color: blackColor,
+                      //         size: 15,
+                      //       ),
+                      //       onChanged: (val) {
+                      //         model.selecttype(val);
+                      //       },
+                      //       items: model.items
+                      //           .map(
+                      //             (val) => DropdownMenuItem<String>(
+                      //               value: val,
+                      //               child: Text(
+                      //                 val,
+                      //               ),
+                      //             ),
+                      //           )
+                      //           .toList(),
+                      //     ),
+                      //   ),
+                      // ),
                       Align(
                         alignment: Alignment.center,
                         child: Column(
@@ -196,7 +197,7 @@ class AddMedicinScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           if (model.formKey.currentState!.validate()) {
-                            model.addMedicine(context);
+                            model.updateMadicine(context);
                           }
                         },
                         child: Container(
@@ -208,7 +209,7 @@ class AddMedicinScreen extends StatelessWidget {
                               color: const Color(0xff4013BD),
                               borderRadius: BorderRadius.circular(35.r)),
                           child: Text(
-                            'Add Medicine',
+                            'Update Medicine',
                             style: style18.copyWith(color: whiteColor),
                           ),
                         ),
