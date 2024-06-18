@@ -3,13 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/ui/screens/add_medicin/add_medicin_screen.dart';
-import 'package:pickmed/ui/screens/home/home_screen.dart';
 import 'package:pickmed/ui/screens/home/home_view_model.dart';
-import 'package:pickmed/ui/screens/medicine_list/medicine_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
 import 'package:pickmed/ui/screens/update_medicine/update_medicine_screen.dart';
 import 'package:provider/provider.dart';

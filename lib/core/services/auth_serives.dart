@@ -44,6 +44,7 @@ class AuthServices {
   }
 
   _getUserProfile() async {
+    print("User ID: ${_localStorageService.getUserid}");
     UserProfileResponse response =
         await _dbService.getUserProfile(_localStorageService.getUserid);
     debugPrint("Message: ${response.error}");
@@ -85,8 +86,11 @@ class AuthServices {
     response = await _dbService.loginWithEmailAndPassword(signInBody);
 
     if (response.success) {
+      userProfile = response.userProfile ?? UserProfile();
       //  UserProfileResponse userProfileResponse = await _dbService.getUserProfile(response.)
       _localStorageService.accessToken = response.accessToken;
+      _localStorageService.setUserid = response.userProfile!.id;
+
       // print(_localStorageService.accessToken);
       // final fcmToken = await locator<NotificationsService>().getFcmToken();
       // final deviceId = await DeviceInfoService().getDeviceId();

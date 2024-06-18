@@ -1,14 +1,12 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/ui/screens/home/home_view_model.dart';
 import 'package:pickmed/ui/screens/medicine_list/medicine_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
-import 'package:pickmed/ui/screens/update_medicine/pain_reliever.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants/text_style.dart';

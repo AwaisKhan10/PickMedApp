@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_field_decoration.dart';
@@ -13,6 +11,8 @@ import 'package:pickmed/ui/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatelessWidget {
+  const CheckoutScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
