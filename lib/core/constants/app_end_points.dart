@@ -7,6 +7,9 @@ class EndPoints {
   static const getUserbyId = "auth/userid";
   static const updateUserbyId = "auth/update";
   static const AddMedicine = "medicine/title";
+  static const getcategories = "api/getAll-categries";
+  static const getCart = "carts/get";
+  static const loginClinicUser = "auth/adminSignIn";
   // static const set_new_password = "auth/set_new_password";
   // static const verify_email_otp = "auth/verify_email_otp";
   // static const send_email_otp = "auth/send_email_otp";

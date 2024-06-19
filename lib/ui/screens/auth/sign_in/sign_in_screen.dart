@@ -8,12 +8,10 @@ import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_field_decoration.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/core/enums/view_state.dart';
-import 'package:pickmed/ui/custom_widgets/buttons/custom_back_button.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_view_model.dart';
 import 'package:pickmed/ui/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:pickmed/ui/screens/clinic_staff/clinic_staff_screen.dart';
-import 'package:pickmed/ui/screens/root/root_screen.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -58,7 +56,7 @@ class SignInScreen extends StatelessWidget {
                       ///
                       /// E-mail address
                       ///
-                      Padding( 
+                      Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 25),
                         child: TextFormField(
                           style: style14,
@@ -96,20 +94,23 @@ class SignInScreen extends StatelessWidget {
                         height: 30.h,
                       ),
 
-                      selectBoxRow(
-                          onPressed: () {},
-                          color: brownColor,
+                      selectBoxRow(model, onPressed: () {
+                        model.clinicStaffToggle(false);
+                      },
+                          border: Border.all(width: 1.0, color: brownColor),
+                          color: model.isClinicStaff
+                              ? Colors.transparent
+                              : brownColor,
                           title: 'Member       '),
                       SizedBox(
                         height: 30.h,
                       ),
-                      selectBoxRow(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ClientStaffScreen()));
-                          },
+                      selectBoxRow(model, onPressed: () {
+                        model.clinicStaffToggle(true);
+                      },
+                          color: model.isClinicStaff
+                              ? brownColor
+                              : Colors.transparent,
                           border: Border.all(width: 1.0, color: brownColor),
                           title: 'Clinic Staff'),
 
@@ -125,7 +126,11 @@ class SignInScreen extends StatelessWidget {
                         child: CustomButton(
                           borderRadius: BorderRadius.circular(25.r),
                           onPressed: () {
-                            model.signUp(context);
+                            if (model.isClinicStaff) {
+                              model.loginClinicUser(context);
+                            } else {
+                              model.signUp(context);
+                            }
                           },
                           text: 'Sign In',
                           boxColor: brownColor,
@@ -178,7 +183,7 @@ class SignInScreen extends StatelessWidget {
   }
 }
 
-selectBoxRow({border, color, title, onPressed}) {
+selectBoxRow(SignInViewModel model, {border, color, title, onPressed}) {
   return InkWell(
     onTap: onPressed,
     child: Row(

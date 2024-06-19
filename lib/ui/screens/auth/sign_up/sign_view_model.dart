@@ -20,7 +20,7 @@ class SignUpViewModel extends BaseViewModel {
   SignUpBody signUpBody = SignUpBody();
 
   signUp(BuildContext context) async {
-    setState(ViewState.busy);
+    // setState(ViewState.busy);
     authResponse = await authServices.signUpUser(signUpBody);
     setState(ViewState.idle);
     if (authResponse.success) {

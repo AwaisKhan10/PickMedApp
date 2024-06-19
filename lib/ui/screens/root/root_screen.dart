@@ -72,10 +72,11 @@ Widget _bottomAppbar(RootScreenViewModel model) {
                     indexNumber: 1),
 
                 CustomBottomNavigarBar(
-                    image: "$staticAssets/message.png",
+                    image: "$staticAssets/profile_img.png",
                     onTap: () {
-                      model.updatedScreen(1);
+                      model.updatedScreen(2);
                     },
+                    scale: 5.0,
                     currentIndex: model.selectedScreen,
                     indexNumber: 1),
               ],

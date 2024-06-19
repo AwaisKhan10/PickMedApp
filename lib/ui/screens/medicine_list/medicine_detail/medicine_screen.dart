@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/core/model/medicine.dart';
-import 'package:pickmed/core/model/medicine_type.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/medicine_list/medicine_detail/medicine_detail_view_model.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
-import 'package:pickmed/ui/screens/shopping_cart/shopping_cart_screen.dart';
 import 'package:provider/provider.dart';
 
 class MedicineDetailScreen extends StatelessWidget {
   final Medicine medicineType;
 
-  MedicineDetailScreen({required this.medicineType});
+  const MedicineDetailScreen({super.key, required this.medicineType});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => MedicineDetailViewModel(),
       child: Consumer<MedicineDetailViewModel>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, model, child) => Scaffold(
           ///
           /// App Bar
           ///
@@ -77,7 +74,7 @@ class MedicineDetailScreen extends StatelessWidget {
                                   offset: const Offset(0, 4),
                                   spreadRadius: 0)
                             ],
-                            image: DecorationImage(
+                            image: const DecorationImage(
                                 image: AssetImage('$dynamicAssets/img2.png'),
                                 fit: BoxFit.cover)),
                       ),
@@ -102,7 +99,7 @@ class MedicineDetailScreen extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: ' / blister',
+                          text: ' / ${medicineType.categroy}',
                           style: style22.copyWith(
                               fontSize: 20.sp, fontWeight: FontWeight.w400),
                         )
@@ -121,7 +118,7 @@ class MedicineDetailScreen extends StatelessWidget {
                   height: 20.h,
                 ),
                 Text(
-                  'Used to treat pain or inflammation caused by conditions such as arthritis or menstrual pain.',
+                  medicineType.description ?? '',
                   style: style18.copyWith(
                       fontWeight: FontWeight.w400, fontSize: 16.sp),
                 ),
@@ -147,16 +144,18 @@ class MedicineDetailScreen extends StatelessWidget {
           // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
           floatingActionButton: InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ShoppingCartcreen(),
-                ),
-              );
+              model.addToCart(medicineType.id ?? "");
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => ShoppingCartcreen(),
+              //   ),
+              // );
             },
             child: Container(
+              width: 150.h,
               padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.only(left: 230, bottom: 20),
+              // margin: const EdgeInsets.only(left: 230, bottom: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.r),
                 color: greenColor,
@@ -168,11 +167,12 @@ class MedicineDetailScreen extends StatelessWidget {
                     'Add to Cart',
                     style: style18.copyWith(color: whiteColor),
                   ),
-                  // Image.asset(
-                  //   "$staticAssets/shopping-cart.png",
-                  //   scale: 4,
-                  //   color: whiteColor,
-                  // ),
+                  Image.asset(
+                    "$staticAssets/shopping-cart.png",
+                    height: 20.h,
+                    width: 20.w,
+                    color: whiteColor,
+                  ),
                 ],
               ),
             ),

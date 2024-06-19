@@ -8,15 +8,17 @@ class Medicine {
   String? categroy;
   String? price;
   String? description;
+  String? imageUrl;
 
-  Medicine({
-    this.title,
-    this.id,
-    this.categroy,
-    this.price,
-    this.description,
-    // this.fcmToken,
-  });
+  Medicine(
+      {this.title,
+      this.id,
+      this.categroy,
+      this.price,
+      this.description,
+      this.imageUrl
+      // this.fcmToken,
+      });
 
   toJson() {
     return {
@@ -25,6 +27,7 @@ class Medicine {
       'categroy': this.categroy,
       'price': this.price,
       'description': this.description,
+      'file': this.imageUrl,
     };
   }
 

@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
+import 'package:pickmed/core/constants/colors.dart';
 
 class CustomBottomNavigarBar extends StatelessWidget {
   final onTap;
@@ -26,6 +27,7 @@ class CustomBottomNavigarBar extends StatelessWidget {
             child: Image.asset(
               "$image",
               scale: scale ?? 3.0,
+              color: lightBlueColor,
               // color: indexNumber == currentIndex ? gradient1 : gradient1,
             )),
       ),

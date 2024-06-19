@@ -1,6 +1,5 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +7,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/text_field_decoration.dart';
 import 'package:pickmed/core/enums/view_state.dart';
-import 'package:pickmed/ui/custom_widgets/buttons/custom_back_button.dart';
 import 'package:pickmed/ui/screens/add_medicin/add_medicin_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -191,6 +189,17 @@ class AddMedicinScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ),
+                      20.verticalSpace,
+                      Row(
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                model.imagepicker();
+                              },
+                              child: Icon(Icons.photo)),
+                          model.image == null ? SizedBox() : Text('Image Added')
+                        ],
                       ),
                       20.verticalSpace,
                       InkWell(

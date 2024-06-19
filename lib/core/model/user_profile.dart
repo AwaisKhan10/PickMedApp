@@ -9,14 +9,13 @@ class UserProfile {
   String? password;
   String? address;
   String? phoneNumber;
-  UserProfile({
-    this.id,
-    this.fullName,
-    this.email,
-    this.phoneNumber,
-    this.password,
-    this.address,
-  });
+  UserProfile(
+      {this.id,
+      this.fullName,
+      this.email,
+      this.phoneNumber,
+      this.password,
+      this.address});
 
   UserProfile.fromJson(Map<String, dynamic> json) {
     try {
@@ -51,7 +50,7 @@ class UserProfile {
       "fullname": fullName,
       "phoneno": phoneNumber,
       "address": address,
-      "password": password
+      "password": password,
     };
   }
 

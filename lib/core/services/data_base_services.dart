@@ -6,6 +6,8 @@ import 'package:pickmed/core/model/body/signup_body.dart';
 import 'package:pickmed/core/model/medicine.dart';
 import 'package:pickmed/core/model/response/add_medicine_response.dart';
 import 'package:pickmed/core/model/response/auth_response.dart';
+import 'package:pickmed/core/model/response/cart_response.dart';
+import 'package:pickmed/core/model/response/category_response.dart';
 import 'package:pickmed/core/model/response/request_response.dart';
 import 'package:pickmed/core/model/response/user_profile_response.dart';
 import 'package:pickmed/core/model/user_profile.dart';
@@ -30,6 +32,7 @@ class DatabaseService {
       url: '${EndPoints.baseUrl}${EndPoints.sign_in}',
       data: body.toJson(),
     );
+
     return AuthResponse.fromJson(response.data);
   }
 
@@ -54,9 +57,11 @@ class DatabaseService {
     log('medicine response ==> $response');
     return ApiBaseResponse.fromJson(response.data);
   }
+
   Future<ApiBaseResponse> deleteMedicine(id) async {
     final RequestResponse response = await _apiServices.deleteRequest(
-        url: '${EndPoints.baseUrl}medicine/delete/$id',);
+      url: '${EndPoints.baseUrl}medicine/delete/$id',
+    );
     log('medicine response ==> $response');
     return ApiBaseResponse.fromJson(response.data);
   }
@@ -79,8 +84,40 @@ class DatabaseService {
   Future<MedicineResponse> getMadicinbycategory(cat) async {
     final RequestResponse response = await _apiServices.getRequest(
         url: '${EndPoints.baseUrl}medicine/category/$cat');
-    log('medicine response ==> ${response.data}');
+    log('medicine response ==> ${response.data['success']}');
     return MedicineResponse.fromJson2(response.data);
+  }
+
+  Future<CartResponse> addProductToCart(String productId) async {
+    final RequestResponse response = await _apiServices
+        .postRequest(url: '${EndPoints.baseUrl}medicine/cart', data: {
+      "product_id": productId,
+    });
+
+    return CartResponse.fromJson(response.data);
+  }
+
+  Future<CategoryResponse> getCategories() async {
+    final RequestResponse response = await _apiServices.getRequest(
+      url: '${EndPoints.baseUrl}${EndPoints.getcategories}',
+    );
+
+    return CategoryResponse.fromJson(response.data);
+  }
+
+  Future<CartResponse> getCartItem() async {
+    final RequestResponse response = await _apiServices.getRequest(
+      url: '${EndPoints.baseUrl}${EndPoints.getCart}',
+    );
+    return CartResponse.cartItemJson(response.data);
+  }
+
+  Future<AuthResponse> loginClinicUser(SignInBody body) async {
+    final RequestResponse response = await _apiServices.postRequest(
+      url: '${EndPoints.baseUrl}${EndPoints.loginClinicUser}',
+      data: body.clinicUserJson(),
+    );
+    return AuthResponse.clinicUser(response.data);
   }
 
   // Future<AuthResponse> sendEmailOTP(String email) async {

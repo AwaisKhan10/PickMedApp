@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:pickmed/core/model/body/login_body.dart';
 import 'package:pickmed/core/model/body/signup_body.dart';
+import 'package:pickmed/core/model/clinic_staff.dart';
 import 'package:pickmed/core/model/response/auth_response.dart';
 import 'package:pickmed/core/model/user_profile.dart';
 import 'package:pickmed/core/services/api_services.dart';
@@ -31,6 +32,7 @@ class AuthServices {
   final _localStorageService = locator<LocalStorageService>();
   UserProfile userProfile = UserProfile();
   String? fcmToken;
+  ClinicStaff clinicStaff = ClinicStaff();
 
   doSetup() async {
     isLogin = _localStorageService.accessToken != null;
@@ -44,6 +46,7 @@ class AuthServices {
   }
 
   _getUserProfile() async {
+    print("User ID: ${_localStorageService.getUserid}");
     UserProfileResponse response =
         await _dbService.getUserProfile(_localStorageService.getUserid);
     debugPrint("Message: ${response.error}");
@@ -85,8 +88,11 @@ class AuthServices {
     response = await _dbService.loginWithEmailAndPassword(signInBody);
 
     if (response.success) {
+      userProfile = response.userProfile ?? UserProfile();
       //  UserProfileResponse userProfileResponse = await _dbService.getUserProfile(response.)
       _localStorageService.accessToken = response.accessToken;
+      _localStorageService.setUserid = response.userProfile!.id;
+
       // print(_localStorageService.accessToken);
       // final fcmToken = await locator<NotificationsService>().getFcmToken();
       // final deviceId = await DeviceInfoService().getDeviceId();

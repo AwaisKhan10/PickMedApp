@@ -15,7 +15,7 @@ class ApiServices {
     //     DioCacheManager(CacheConfig(baseUrl: EndPoint.baseUrl)).interceptor);
     dio.options.headers['Content-Type'] = 'application/json';
     dio.options.headers["accept"] = 'application/json';
-    dio.options.headers["x-access-token"] = '$accessToken';
+    dio.options.headers["Authorization"] = 'Bearer $accessToken';
 
     dio.options.followRedirects = false;
     dio.options.validateStatus = (s) {
