@@ -8,4 +8,9 @@ class SignInBody {
         'email': email,
         'password': password,
       };
+
+  clinicUserJson() => {
+        'password': password,
+        'email': email,
+      };
 }

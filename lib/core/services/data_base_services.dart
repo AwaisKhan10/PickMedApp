@@ -109,9 +109,17 @@ class DatabaseService {
     final RequestResponse response = await _apiServices.getRequest(
       url: '${EndPoints.baseUrl}${EndPoints.getCart}',
     );
-    print('cart response ==> ${response.data}');
     return CartResponse.cartItemJson(response.data);
   }
+
+  Future<AuthResponse> loginClinicUser(SignInBody body) async {
+    final RequestResponse response = await _apiServices.postRequest(
+      url: '${EndPoints.baseUrl}${EndPoints.loginClinicUser}',
+      data: body.clinicUserJson(),
+    );
+    return AuthResponse.clinicUser(response.data);
+  }
+
   // Future<AuthResponse> sendEmailOTP(String email) async {
   //   final RequestResponse response = await _apiServices.postRequest(
   //       url: '${EndPoints.baseUrl}${EndPoints.send_email_otp}',

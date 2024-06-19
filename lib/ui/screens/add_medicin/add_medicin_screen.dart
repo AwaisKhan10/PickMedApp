@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pickmed/core/constants/colors.dart';
@@ -188,6 +189,17 @@ class AddMedicinScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ),
+                      20.verticalSpace,
+                      Row(
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                model.imagepicker();
+                              },
+                              child: Icon(Icons.photo)),
+                          model.image == null ? SizedBox() : Text('Image Added')
+                        ],
                       ),
                       20.verticalSpace,
                       InkWell(

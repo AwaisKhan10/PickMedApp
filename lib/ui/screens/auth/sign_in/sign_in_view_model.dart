@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pickmed/core/model/clinic_staff.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
+import 'package:pickmed/core/services/data_base_services.dart';
+import 'package:pickmed/ui/screens/home/home_screen2.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/enums/view_state.dart';
@@ -25,6 +28,8 @@ class SignInViewModel extends BaseViewModel {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   SignInBody signInBody = SignInBody();
+  final db = DatabaseService();
+  bool isClinicStaff = false;
 
   signUp(BuildContext context) async {
     setState(ViewState.busy);
@@ -36,5 +41,26 @@ class SignInViewModel extends BaseViewModel {
       Get.snackbar("Error!", "${authResponse.error}",
           colorText: blueColor, backgroundColor: blackColor);
     }
+  }
+
+  loginClinicUser(context) async {
+    setState(ViewState.busy);
+    authResponse = await db.loginClinicUser(signInBody);
+    setState(ViewState.idle);
+    if (authResponse.success) {
+      authServices.clinicStaff = authResponse.clinicStaff ?? ClinicStaff();
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen2()),
+          (route) => false);
+    } else {
+      Get.snackbar("Error!", "The user is not a clinic staff user.",
+          colorText: blueColor, backgroundColor: blackColor);
+    }
+  }
+
+  void clinicStaffToggle(bool val) {
+    isClinicStaff = val;
+    notifyListeners();
   }
 }

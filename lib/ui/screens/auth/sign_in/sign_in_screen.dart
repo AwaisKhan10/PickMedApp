@@ -94,20 +94,23 @@ class SignInScreen extends StatelessWidget {
                         height: 30.h,
                       ),
 
-                      selectBoxRow(
-                          onPressed: () {},
-                          color: brownColor,
+                      selectBoxRow(model, onPressed: () {
+                        model.clinicStaffToggle(false);
+                      },
+                          border: Border.all(width: 1.0, color: brownColor),
+                          color: model.isClinicStaff
+                              ? Colors.transparent
+                              : brownColor,
                           title: 'Member       '),
                       SizedBox(
                         height: 30.h,
                       ),
-                      selectBoxRow(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ClientStaffScreen()));
-                          },
+                      selectBoxRow(model, onPressed: () {
+                        model.clinicStaffToggle(true);
+                      },
+                          color: model.isClinicStaff
+                              ? brownColor
+                              : Colors.transparent,
                           border: Border.all(width: 1.0, color: brownColor),
                           title: 'Clinic Staff'),
 
@@ -123,7 +126,11 @@ class SignInScreen extends StatelessWidget {
                         child: CustomButton(
                           borderRadius: BorderRadius.circular(25.r),
                           onPressed: () {
-                            model.signUp(context);
+                            if (model.isClinicStaff) {
+                              model.loginClinicUser(context);
+                            } else {
+                              model.signUp(context);
+                            }
                           },
                           text: 'Sign In',
                           boxColor: brownColor,
@@ -176,7 +183,7 @@ class SignInScreen extends StatelessWidget {
   }
 }
 
-selectBoxRow({border, color, title, onPressed}) {
+selectBoxRow(SignInViewModel model, {border, color, title, onPressed}) {
   return InkWell(
     onTap: onPressed,
     child: Row(

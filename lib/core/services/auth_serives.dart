@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:pickmed/core/model/body/login_body.dart';
 import 'package:pickmed/core/model/body/signup_body.dart';
+import 'package:pickmed/core/model/clinic_staff.dart';
 import 'package:pickmed/core/model/response/auth_response.dart';
 import 'package:pickmed/core/model/user_profile.dart';
 import 'package:pickmed/core/services/api_services.dart';
@@ -31,6 +32,7 @@ class AuthServices {
   final _localStorageService = locator<LocalStorageService>();
   UserProfile userProfile = UserProfile();
   String? fcmToken;
+  ClinicStaff clinicStaff = ClinicStaff();
 
   doSetup() async {
     isLogin = _localStorageService.accessToken != null;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pickmed/core/enums/view_state.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
 import 'package:pickmed/ui/screens/home/home_screen2.dart';
+import 'package:pickmed/ui/screens/profile/my_profile/my_profile_screen.dart';
 import 'package:pickmed/ui/screens/shopping_cart/shopping_cart_screen.dart';
 import 'package:pickmed/ui/screens/user_side/home/user_home_screen.dart';
 
@@ -19,7 +20,8 @@ class RootScreenViewModel extends BaseViewModel {
     UserHomeScreen(),
     // HomeScreen(),
 
-    ShoppingCartcreen(),
+    const ShoppingCartcreen(),
+    const MyProfileScreen(),
   ];
 
   updatedScreen(int index) {

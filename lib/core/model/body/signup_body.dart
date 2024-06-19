@@ -13,6 +13,7 @@ class SignUpBody {
     this.name,
     this.phone,
     this.address,
+
     // this.fcmToken,
   });
 
