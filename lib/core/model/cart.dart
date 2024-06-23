@@ -50,6 +50,7 @@ class Cart {
     data['Total'] = total;
     data['order_status'] = orderStatus;
     data['userId'] = userId;
+
     data['__v'] = iV;
     return data;
   }
@@ -61,6 +62,7 @@ class ProductId {
   String? categroy;
   String? price;
   String? description;
+  String? imageUrl;
   int? iV;
 
   ProductId(
@@ -69,6 +71,7 @@ class ProductId {
       this.categroy,
       this.price,
       this.description,
+      this.imageUrl,
       this.iV});
 
   ProductId.fromJson(Map<String, dynamic> json) {
@@ -77,6 +80,7 @@ class ProductId {
     categroy = json['categroy'];
     price = json['price'];
     description = json['description'];
+    imageUrl = json['file'];
     iV = json['__v'];
   }
 
@@ -87,6 +91,7 @@ class ProductId {
     data['categroy'] = categroy;
     data['price'] = price;
     data['description'] = description;
+    data['file'] = imageUrl;
     data['__v'] = iV;
     return data;
   }

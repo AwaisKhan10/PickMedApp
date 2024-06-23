@@ -43,6 +43,7 @@ class Medicine {
     try {
       this.id = json["id"];
       this.title = json["title"];
+      this.imageUrl = json["file"];
     } catch (e) {
       debugPrint("profile.FromJsonError => $e");
     }
@@ -54,6 +55,7 @@ class Medicine {
       this.categroy = json["categroy"];
       this.description = json["description"];
       this.price = json["price"];
+      this.imageUrl = json["file"];
     } catch (e) {
       debugPrint("profile.FromJsonError => $e");
     }

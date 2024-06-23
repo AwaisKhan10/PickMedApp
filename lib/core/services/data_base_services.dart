@@ -109,6 +109,7 @@ class DatabaseService {
     final RequestResponse response = await _apiServices.getRequest(
       url: '${EndPoints.baseUrl}${EndPoints.getCart}',
     );
+
     return CartResponse.cartItemJson(response.data);
   }
 
@@ -118,6 +119,20 @@ class DatabaseService {
       data: body.clinicUserJson(),
     );
     return AuthResponse.clinicUser(response.data);
+  }
+
+  Future<bool> emptyCart() async {
+    bool isDone = false;
+    try {
+      await _apiServices.deleteRequest(
+        url: '${EndPoints.baseUrl}${EndPoints.deleteCartData}',
+      );
+      isDone = true;
+    } catch (e) {
+      print(e);
+      isDone = false;
+    }
+    return isDone;
   }
 
   // Future<AuthResponse> sendEmailOTP(String email) async {

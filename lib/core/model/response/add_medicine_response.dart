@@ -22,6 +22,7 @@ class MedicineResponse extends ApiBaseResponse {
     if (json['medicines'] != null) {
       for (var med in json['medicines']) {
         resp.add(Medicine.fromJson2(med));
+        print("atifh=> ${resp[0].toJson()}");
       }
     }
   }

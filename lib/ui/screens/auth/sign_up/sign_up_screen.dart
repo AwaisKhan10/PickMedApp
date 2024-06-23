@@ -10,7 +10,6 @@ import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_field_decoration.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/core/enums/view_state.dart';
-import 'package:pickmed/ui/custom_widgets/buttons/custom_back_button.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/auth/sign_up/sign_view_model.dart';

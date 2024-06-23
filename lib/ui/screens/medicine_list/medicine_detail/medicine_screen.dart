@@ -62,22 +62,42 @@ class MedicineDetailScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 148.h,
-                        width: 303.w,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: blackColor.withOpacity(0.25),
-                                  blurRadius: 4,
-                                  offset: const Offset(0, 4),
-                                  spreadRadius: 0)
-                            ],
-                            image: const DecorationImage(
-                                image: AssetImage('$dynamicAssets/img2.png'),
-                                fit: BoxFit.cover)),
-                      ),
+                      medicineType.imageUrl != null
+                          ? Container(
+                              height: 148.h,
+                              width: 303.w,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: blackColor.withOpacity(0.25),
+                                        blurRadius: 4,
+                                        offset: const Offset(0, 4),
+                                        spreadRadius: 0)
+                                  ],
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          medicineType.imageUrl ?? ''),
+                                      //  AssetImage('$dynamicAssets/img2.png'),
+                                      fit: BoxFit.cover)),
+                            )
+                          : Container(
+                              height: 148.h,
+                              width: 303.w,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: blackColor.withOpacity(0.25),
+                                        blurRadius: 4,
+                                        offset: const Offset(0, 4),
+                                        spreadRadius: 0)
+                                  ],
+                                  image: DecorationImage(
+                                      image:
+                                          AssetImage('$dynamicAssets/img2.png'),
+                                      fit: BoxFit.cover)),
+                            ),
                       SizedBox(
                         height: 20.h,
                       ),
