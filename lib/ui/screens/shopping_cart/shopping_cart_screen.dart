@@ -5,7 +5,6 @@ import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/core/enums/view_state.dart';
-import 'package:pickmed/ui/custom_widgets/custom__shopping_cart.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/checkout/checkout_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
@@ -65,20 +64,43 @@ class ShoppingCartcreen extends StatelessWidget {
                                           // Image Section
                                           Row(
                                             children: [
-                                              Container(
-                                                height: 63.h,
-                                                width: 92.w,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.r),
-                                                  image: DecorationImage(
-                                                    image: AssetImage(
-                                                        '$dynamicAssets/img1.png'),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
+                                              model.cartItems[index].productId!
+                                                          .imageUrl !=
+                                                      null
+                                                  ? Container(
+                                                      height: 63.h,
+                                                      width: 92.w,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15.r),
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(
+                                                              model
+                                                                  .cartItems[
+                                                                      index]
+                                                                  .productId!
+                                                                  .imageUrl!),
+                                                          // AssetImage(
+                                                          //     '$dynamicAssets/img1.png'),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : Container(
+                                                      height: 63.h,
+                                                      width: 92.w,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15.r),
+                                                        image: DecorationImage(
+                                                          image: AssetImage(
+                                                              '$dynamicAssets/img1.png'),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
                                               SizedBox(width: 10.w),
                                               Column(
                                                 crossAxisAlignment:
@@ -222,11 +244,12 @@ class ShoppingCartcreen extends StatelessWidget {
                                           height: 20.h,
                                         ),
                                         checkoutButton(onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CheckoutScreen()));
+                                          model.emptyCart();
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //             CheckoutScreen()));
                                         }),
                                       ],
                                     ),

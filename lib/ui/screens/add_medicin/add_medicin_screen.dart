@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/text_field_decoration.dart';
@@ -205,7 +206,11 @@ class AddMedicinScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           if (model.formKey.currentState!.validate()) {
-                            model.addMedicine(context);
+                            if (model.image == null) {
+                              Get.snackbar('Error', 'Please add an image');
+                            } else {
+                              model.addMedicine(context);
+                            }
                           }
                         },
                         child: Container(

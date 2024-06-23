@@ -1,9 +1,10 @@
+import 'package:get/get.dart';
 import 'package:pickmed/core/enums/view_state.dart';
 import 'package:pickmed/core/model/cart.dart';
 import 'package:pickmed/core/model/response/cart_response.dart';
-import 'package:pickmed/core/model/shopping_cart.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
 import 'package:pickmed/core/services/data_base_services.dart';
+import 'package:pickmed/ui/screens/root/root_screen.dart';
 
 class ShoppingCartViewModel extends BaseViewModel {
   final db = DatabaseService();
@@ -71,5 +72,16 @@ class ShoppingCartViewModel extends BaseViewModel {
       // shoppingCartList.removeAt(index);
       notifyListeners();
     }
+  }
+
+  emptyCart() async {
+    setState(ViewState.busy);
+    bool isDone = await db.emptyCart();
+    if (isDone) {
+      Get.snackbar('Success', 'Check out successful');
+      Get.offAll(const RootScreen());
+    }
+    setState(ViewState.idle);
+    notifyListeners();
   }
 }

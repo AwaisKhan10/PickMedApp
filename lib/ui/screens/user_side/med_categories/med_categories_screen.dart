@@ -91,25 +91,57 @@ class MedCategoriesScreen extends StatelessWidget {
                                         ///
                                         /// Image
                                         ///
-                                        Container(
-                                          height: 100.h,
-                                          width: 150.w,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.r),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    color: blackColor
-                                                        .withOpacity(0.25),
-                                                    blurRadius: 4,
-                                                    offset: const Offset(0, 4),
-                                                    spreadRadius: 0)
-                                              ],
-                                              image: const DecorationImage(
-                                                  image: AssetImage(
-                                                      '$dynamicAssets/img2.png'),
-                                                  fit: BoxFit.cover)),
-                                        ),
+                                        model.medicins[index].imageUrl != null
+                                            ? Container(
+                                                height: 100.h,
+                                                width: 150.w,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.r),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: blackColor
+                                                              .withOpacity(
+                                                                  0.25),
+                                                          blurRadius: 4,
+                                                          offset: const Offset(
+                                                              0, 4),
+                                                          spreadRadius: 0)
+                                                    ],
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            model
+                                                                    .medicins[
+                                                                        index]
+                                                                    .imageUrl ??
+                                                                " "),
+                                                        //  AssetImage(
+                                                        // '$dynamicAssets/img2.png'),
+                                                        fit: BoxFit.cover)),
+                                              )
+                                            : Container(
+                                                height: 100.h,
+                                                width: 150.w,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.r),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: blackColor
+                                                              .withOpacity(
+                                                                  0.25),
+                                                          blurRadius: 4,
+                                                          offset: const Offset(
+                                                              0, 4),
+                                                          spreadRadius: 0)
+                                                    ],
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            '$dynamicAssets/img2.png'),
+                                                        fit: BoxFit.cover)),
+                                              ),
                                         10.horizontalSpace,
                                         Expanded(
                                           child: Column(
