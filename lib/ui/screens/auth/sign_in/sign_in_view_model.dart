@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pickmed/core/model/clinic_staff.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
 import 'package:pickmed/core/services/data_base_services.dart';
+import 'package:pickmed/core/services/local_storage.dart';
 import 'package:pickmed/ui/screens/home/home_screen2.dart';
 
 import '../../../../core/constants/colors.dart';
@@ -15,6 +16,7 @@ import '../../root/root_screen.dart';
 
 class SignInViewModel extends BaseViewModel {
   bool isChecked = false;
+  final _localStorageService = locator<LocalStorageService>();
 
   onClick() {
     isChecked = !isChecked;
