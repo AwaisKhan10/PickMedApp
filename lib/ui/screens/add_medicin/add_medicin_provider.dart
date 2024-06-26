@@ -27,12 +27,12 @@ class AddMedicineProvider extends BaseViewModel {
 
   List<String> items = [
     'Select Type',
-    'pain relievers',
-    'anthistamine/allergy',
-    'antacids',
-    'cough/cold medicines',
-    'digestive aids',
-    'others',
+    'PAIN RELIEVERS',
+    'ANTHISTAMINES',
+    'ANTACIDS',
+    'COMMON COLD',
+    'DIGESTIVE AIDS',
+    'OTHERS',
   ];
 
   selecttype(val) {

@@ -16,7 +16,7 @@ class PainRelieverProvider extends BaseViewModel {
 
   getbyCategory(String name) async {
     setState(ViewState.busy);
-    response = await db.getMadicinbycategory(name.toLowerCase());
+    response = await db.getMadicinbycategory(name);
     if (response!.success == true && response != null) {
       medicins = response!.resp;
     }

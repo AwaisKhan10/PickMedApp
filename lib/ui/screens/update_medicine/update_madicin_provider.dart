@@ -14,16 +14,16 @@ class UpdateMadicinProvider extends BaseViewModel {
   List<Medicine> medicins = [];
 
   UpdateMadicinProvider() {
-    // getAllMedicins();
+    getAllMedicins();
   }
 
   List<String> cats = [
-    'pain relievers',
-    'anthistamine/allergy',
-    'antacids',
-    'cough/cold medicines',
-    'digestive aids',
-    'others',
+    'PAIN RELIEVERS',
+    'ANTHISTAMINES',
+    'ANTACIDS',
+    'COMMON COLD',
+    'DIGESTIVE AIDS',
+    'OTHERS',
   ];
 
   getAllMedicins() async {

@@ -33,8 +33,7 @@ class MedCategoriesProvider extends BaseViewModel {
 
   getbyCategory(String name) async {
     setState(ViewState.busy);
-    MedicineResponse response =
-        await db.getMadicinbycategory(name.toLowerCase());
+    MedicineResponse response = await db.getMadicinbycategory(name);
     if (response.success == true && response.resp.isNotEmpty) {
       medicins = response.resp;
     }
