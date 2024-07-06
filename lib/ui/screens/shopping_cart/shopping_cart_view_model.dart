@@ -78,8 +78,10 @@ class ShoppingCartViewModel extends BaseViewModel {
     setState(ViewState.busy);
     bool isDone = await db.emptyCart();
     if (isDone) {
-      Get.snackbar('Success', 'Check out successful');
-      Get.offAll(const RootScreen());
+      bool isDone = await db.checkout();
+      if (isDone) {
+        Get.offAll(const RootScreen());
+      }
     }
     setState(ViewState.idle);
     notifyListeners();

@@ -79,13 +79,17 @@ class SignInScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 10.0, bottom: 15),
                         child: TextFormField(
                           style: style14,
+                          obscureText: model.isPasswordVisible,
                           onChanged: (value) {
                             model.signInBody.password = value;
                           },
                           decoration: authFieldDecoration.copyWith(
-                              suffixIcon: Image.asset(
-                                '$staticAssets/password.png',
-                                scale: 3,
+                              suffixIcon: GestureDetector(
+                                onTap: () => model.togglePasswordVisibility(),
+                                child: Image.asset(
+                                  '$staticAssets/password.png',
+                                  scale: 3,
+                                ),
                               ),
                               hintText: 'Password'),
                         ),

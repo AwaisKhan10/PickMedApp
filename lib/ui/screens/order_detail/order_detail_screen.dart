@@ -8,19 +8,19 @@ import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/core/enums/view_state.dart';
-import 'package:pickmed/core/model/order_list.dart';
+import 'package:pickmed/core/model/order.dart';
 import 'package:pickmed/ui/custom_widgets/buttons/custom_button.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/order_detail/order_detail_view_model.dart';
 import 'package:provider/provider.dart';
 
 class OrderDetailScreen extends StatelessWidget {
-  final OrderList orderList;
-  OrderDetailScreen({required this.orderList});
+  final Orders orderList;
+  const OrderDetailScreen({required this.orderList});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => OrderDetailViewModel(),
+      create: (context) => OrderDetailViewModel(orderList),
       child: Consumer<OrderDetailViewModel>(
         builder: (context, model, child) {
           return ModalProgressHUD(
@@ -80,69 +80,69 @@ class OrderDetailScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${orderList.username}", style: style22),
+                            Text("${orderList.fullname}", style: style22),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            // Text(
+                            //   "Phone Number: +923039639571",
+                            //   style:
+                            //       style18.copyWith(fontWeight: FontWeight.w400),
+                            // ),
                             SizedBox(
                               height: 10.h,
                             ),
                             Text(
-                              "Phone Number: +923039639571",
+                              "Total (RM) : ${orderList.price ?? ""}",
                               style:
                                   style18.copyWith(fontWeight: FontWeight.w400),
                             ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              "Total (RM) : ${orderList.totalRm}",
-                              style:
-                                  style18.copyWith(fontWeight: FontWeight.w400),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
+                            // SizedBox(
+                            //   height: 20.h,
+                            // ),
                           ],
                         ),
                       ),
-                      Divider(
-                        thickness: 1,
-                        color: blackColor.withOpacity(0.5),
-                      ),
+                      // Divider(
+                      //   thickness: 1,
+                      //   color: blackColor.withOpacity(0.5),
+                      // ),
 
                       ///
                       /// name of medicine something like that
                       ///
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25.0, vertical: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("1  X  Cap. Celebrex",
-                                style: style18.copyWith(
-                                    fontWeight: FontWeight.w400)),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              "1  X  Cap. Tramadol",
-                              style:
-                                  style18.copyWith(fontWeight: FontWeight.w400),
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              "1  X  Tab. Ibuprofen",
-                              style:
-                                  style18.copyWith(fontWeight: FontWeight.w400),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(),
+                      //   child: Column(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       // Text("1  X  Cap. Celebrex",
+                      //       //     style: style18.copyWith(
+                      //       //         fontWeight: FontWeight.w400)),
+                      //       // SizedBox(
+                      //       //   height: 10.h,
+                      //       // ),
+                      //       // Text(
+                      //       //   "1  X  Cap. Tramadol",
+                      //       //   style:
+                      //       //       style18.copyWith(fontWeight: FontWeight.w400),
+                      //       // ),
+                      //       // SizedBox(
+                      //       //   height: 10.h,
+                      //       // ),
+                      //       Text(
+                      //         orderList.orderStatus ?? "",
+                      //         style:
+                      //             style18.copyWith(fontWeight: FontWeight.w400),
+                      //       ),
+                      //       // SizedBox(
+                      //       //   height: 20.h,
+                      //       // ),
+                      //     ],
+                      //   ),
+                      // ),
+
                       Divider(
                         thickness: 1,
                         color: blackColor.withOpacity(0.5),
@@ -167,9 +167,10 @@ class OrderDetailScreen extends StatelessWidget {
                       text: 'COMPLETE ORDER',
                       textColor: whiteColor,
                       onPressed: () {
-                        model.updateOrderStatus(orderList, 'Completed');
-                        model.setState(ViewState.idle);
-                        Get.back(result: true);
+                        model.getUpdateOrderStatus(isCompleted: true);
+                        // model.updateOrderStatus(orderList, 'Completed');
+                        // model.setState(ViewState.idle);
+                        // Get.back(result: true);
                       },
                     ),
                     CustomButton(
@@ -177,9 +178,8 @@ class OrderDetailScreen extends StatelessWidget {
                       text: 'REJECTED ORDER',
                       textColor: whiteColor,
                       onPressed: () {
-                        model.updateOrderStatus(orderList, 'Rejected');
-                        model.setState(ViewState.idle);
-                        Get.back(result: true);
+                        model.getUpdateOrderStatus(isCompleted: false);
+                        // model.updateOrderStatus(orderList, 'Rejected');
                       },
                     ),
                   ],

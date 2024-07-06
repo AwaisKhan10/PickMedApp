@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:pickmed/core/constants/colors.dart';
 import 'package:pickmed/core/constants/strings.dart';
@@ -53,7 +52,7 @@ class ClientStaffScreen extends StatelessWidget {
 
                     Expanded(
                       child: ListView.builder(
-                        itemCount: model.orderList.length,
+                        itemCount: model.orders.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () async {
@@ -61,16 +60,16 @@ class ClientStaffScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => OrderDetailScreen(
-                                      orderList: model.orderList[index]),
+                                      orderList: model.orders[index]),
                                 ),
                               );
                               if (result != null && result == true) {
                                 model
-                                    .refreshOrderList(); // Refresh order list if status changed
+                                    .getOrderList(); // Refresh order list if status changed
                               }
                             },
                             child: CustomOrderList(
-                              orderList: model.orderList[index],
+                              orders: model.orders[index],
                             ),
                           );
                         },

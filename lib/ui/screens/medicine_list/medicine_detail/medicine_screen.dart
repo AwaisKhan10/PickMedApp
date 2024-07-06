@@ -141,23 +141,24 @@ class MedicineDetailScreen extends StatelessWidget {
                   medicineType.description ?? '',
                   style: style18.copyWith(
                       fontWeight: FontWeight.w400, fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  'Dose : 1 capsule / 2 times (a day) ',
-                  style: style18.copyWith(
-                      fontWeight: FontWeight.w400, fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Text(
-                  'Warning :\n        . Only for adult',
-                  style: style18.copyWith(
-                      fontWeight: FontWeight.w400, fontSize: 16.sp),
-                ),
+                )
+                // ),
+                // SizedBox(
+                //   height: 20.h,
+                // ),
+                // Text(
+                //   'Dose : 1 capsule / 2 times (a day) ',
+                //   style: style18.copyWith(
+                //       fontWeight: FontWeight.w400, fontSize: 16.sp),
+                // ),
+                // SizedBox(
+                //   height: 10.h,
+                // ),
+                // Text(
+                //   'Warning :\n        . Only for adult',
+                //   style: style18.copyWith(
+                //       fontWeight: FontWeight.w400, fontSize: 16.sp),
+                // ),
               ],
             ),
           ),

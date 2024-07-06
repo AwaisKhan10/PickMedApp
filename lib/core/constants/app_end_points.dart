@@ -11,6 +11,7 @@ class EndPoints {
   static const getCart = "carts/get";
   static const loginClinicUser = "auth/adminSignIn";
   static const deleteCartData = "carts/empty";
+  static const checkout = "checkout";
   // static const set_new_password = "auth/set_new_password";
   // static const verify_email_otp = "auth/verify_email_otp";
   // static const send_email_otp = "auth/send_email_otp";
