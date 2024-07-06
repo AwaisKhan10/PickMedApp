@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pickmed/core/constants/colors.dart';
+import 'package:pickmed/core/constants/order_status.dart';
 import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
-import 'package:pickmed/core/model/order_list.dart';
+import 'package:pickmed/core/model/order.dart';
 
 class CustomOrderList extends StatelessWidget {
-  final OrderList orderList;
-  const CustomOrderList({required this.orderList});
+  final Orders orders;
+  const CustomOrderList({super.key, required this.orders});
 
   @override
   Widget build(BuildContext context) {
     Color statusColor = greenColor; // Default color
 
     // Set color based on status
-    switch (orderList.status) {
-      case 'Rejected':
+    switch (orders.orderStatus) {
+      case OrderStatus.cancelled:
         statusColor = redColor;
         break;
-      case 'Completed':
+      case OrderStatus.deliver:
         statusColor = darkBlueColor;
         break;
       default:
@@ -56,11 +57,11 @@ class CustomOrderList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${orderList.username}",
+                orders.fullname ?? "",
                 style: style18,
               ),
               Text(
-                "Total (RM) : ${orderList.totalRm}",
+                "Total (RM) : ${orders.price ?? ""}",
                 style: style18.copyWith(fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 6.h),
@@ -72,7 +73,7 @@ class CustomOrderList extends StatelessWidget {
                       style: style14.copyWith(fontWeight: FontWeight.w700),
                     ),
                     TextSpan(
-                      text: '${orderList.status}',
+                      text: orders.orderStatus ?? "",
                       style: style14.copyWith(
                         color: statusColor, // Use the status color
                         fontWeight: FontWeight.w700,

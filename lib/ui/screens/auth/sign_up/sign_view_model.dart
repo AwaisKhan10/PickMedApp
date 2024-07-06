@@ -18,6 +18,12 @@ class SignUpViewModel extends BaseViewModel {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   SignUpBody signUpBody = SignUpBody();
+  bool isPasswordVisible = true;
+
+  togglePasswordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
+    notifyListeners();
+  }
 
   signUp(BuildContext context) async {
     setState(ViewState.busy);

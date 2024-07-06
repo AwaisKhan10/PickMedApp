@@ -186,6 +186,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               FilteringTextInputFormatter.deny(
                                   RegExp(r"\s\b|\b\s")),
                             ],
+                            obscureText: model.isPasswordVisible,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: (val) {
@@ -204,9 +205,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               model.signUpBody.password = val.trim();
                             },
                             decoration: authFieldDecoration.copyWith(
-                                suffixIcon: Image.asset(
-                                  '$staticAssets/password.png',
-                                  scale: 3,
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    model.togglePasswordVisibility();
+                                  },
+                                  child: Image.asset(
+                                    '$staticAssets/password.png',
+                                    scale: 3,
+                                  ),
                                 ),
                                 hintText: 'Password'),
                           ),

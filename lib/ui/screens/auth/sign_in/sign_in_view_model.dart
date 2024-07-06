@@ -16,10 +16,16 @@ import '../../root/root_screen.dart';
 
 class SignInViewModel extends BaseViewModel {
   bool isChecked = false;
+  bool isPasswordVisible = true;
   final _localStorageService = locator<LocalStorageService>();
 
   onClick() {
     isChecked = !isChecked;
+    notifyListeners();
+  }
+
+  togglePasswordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
     notifyListeners();
   }
 

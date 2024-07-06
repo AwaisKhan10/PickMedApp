@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:get/get.dart';
 import 'package:pickmed/core/constants/app_end_points.dart';
 import 'package:pickmed/core/model/body/login_body.dart';
 import 'package:pickmed/core/model/body/signup_body.dart';
@@ -8,6 +9,7 @@ import 'package:pickmed/core/model/response/add_medicine_response.dart';
 import 'package:pickmed/core/model/response/auth_response.dart';
 import 'package:pickmed/core/model/response/cart_response.dart';
 import 'package:pickmed/core/model/response/category_response.dart';
+import 'package:pickmed/core/model/response/order_response.dart';
 import 'package:pickmed/core/model/response/request_response.dart';
 import 'package:pickmed/core/model/response/user_profile_response.dart';
 import 'package:pickmed/core/model/user_profile.dart';
@@ -121,6 +123,20 @@ class DatabaseService {
     return AuthResponse.clinicUser(response.data);
   }
 
+  Future<bool> checkout() async {
+    bool isDone = false;
+    try {
+      await _apiServices.postRequest(
+        url: '${EndPoints.baseUrl}${EndPoints.checkout}',
+      );
+      isDone = true;
+    } catch (e) {
+      print(e);
+      isDone = false;
+    }
+    return isDone;
+  }
+
   Future<bool> emptyCart() async {
     bool isDone = false;
     try {
@@ -131,6 +147,31 @@ class DatabaseService {
     } catch (e) {
       print(e);
       isDone = false;
+    }
+    return isDone;
+  }
+
+  Future<OrdersResponse> getOrderList() async {
+    final RequestResponse response = await _apiServices.getRequest(
+      url: '${EndPoints.baseUrl}order/get',
+    );
+    return OrdersResponse.fromJson(response.data);
+  }
+
+  Future<bool> updateOrderStatus(
+      {required String orderId, required String orderStatus}) async {
+    bool isDone = false;
+    try {
+      final response = await _apiServices.fatchRequest(
+        url: '${EndPoints.baseUrl}order-status',
+        data: {"orderId": orderId, "order_status": orderStatus},
+      );
+
+      isDone = response.data['success'];
+
+      // isDone = true;
+    } catch (e) {
+      print(e);
     }
     return isDone;
   }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -6,7 +7,6 @@ import 'package:pickmed/core/constants/strings.dart';
 import 'package:pickmed/core/constants/text_style.dart';
 import 'package:pickmed/core/enums/view_state.dart';
 import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
-import 'package:pickmed/ui/screens/checkout/checkout_screen.dart';
 import 'package:pickmed/ui/screens/profile/profile_screen.dart';
 import 'package:pickmed/ui/screens/shopping_cart/shopping_cart_view_model.dart';
 import 'package:provider/provider.dart';
@@ -64,43 +64,71 @@ class ShoppingCartcreen extends StatelessWidget {
                                           // Image Section
                                           Row(
                                             children: [
-                                              model.cartItems[index].productId!
-                                                          .imageUrl !=
-                                                      null
-                                                  ? Container(
-                                                      height: 63.h,
-                                                      width: 92.w,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15.r),
-                                                        image: DecorationImage(
-                                                          image: NetworkImage(
-                                                              model
-                                                                  .cartItems[
-                                                                      index]
-                                                                  .productId!
-                                                                  .imageUrl!),
-                                                          // AssetImage(
-                                                          //     '$dynamicAssets/img1.png'),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    )
-                                                  : Container(
-                                                      height: 63.h,
-                                                      width: 92.w,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15.r),
-                                                        image: DecorationImage(
-                                                          image: AssetImage(
-                                                              '$dynamicAssets/img1.png'),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
+                                              CachedNetworkImage(
+                                                imageUrl: model.cartItems[index]
+                                                        .productId?.imageUrl ??
+                                                    "",
+                                                fit: BoxFit.cover,
+                                                height: 63.h,
+                                                width: 92.w,
+                                                placeholder: (context, url) =>
+                                                    const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Container(
+                                                  color: Colors.grey[300],
+                                                  height: 63.h,
+                                                  width: 92.w,
+                                                  child: const Center(
+                                                    child: Text(
+                                                      "No Image",
+                                                      style: TextStyle(
+                                                          color: blackColor),
                                                     ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // model.cartItems[index].productId!
+                                              //             .imageUrl !=
+                                              //         null
+                                              //     ? Container(
+                                              //         height: 63.h,
+                                              //         width: 92.w,
+                                              //         decoration: BoxDecoration(
+                                              //           borderRadius:
+                                              //               BorderRadius
+                                              //                   .circular(15.r),
+                                              //           image: DecorationImage(
+                                              //             image: NetworkImage(
+                                              //                 model
+                                              //                     .cartItems[
+                                              //                         index]
+                                              //                     .productId!
+                                              //                     .imageUrl!),
+                                              //             // AssetImage(
+                                              //             //     '$dynamicAssets/img1.png'),
+                                              //             fit: BoxFit.cover,
+                                              //           ),
+                                              //         ),
+                                              //       )
+                                              //     : Container(
+                                              //         height: 63.h,
+                                              //         width: 92.w,
+                                              //         decoration: BoxDecoration(
+                                              //           borderRadius:
+                                              //               BorderRadius
+                                              //                   .circular(15.r),
+                                              //           image: DecorationImage(
+                                              //             image: AssetImage(
+                                              //                 '$dynamicAssets/img1.png'),
+                                              //             fit: BoxFit.cover,
+                                              //           ),
+                                              //         ),
+                                              //       ),
+
                                               SizedBox(width: 10.w),
                                               Column(
                                                 crossAxisAlignment:

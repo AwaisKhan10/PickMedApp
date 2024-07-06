@@ -50,6 +50,26 @@ class ApiServices {
     }
   }
 
+  fatchRequest({required String url, data}) async {
+    Dio dio = await launchDio();
+
+    try {
+      final response = await dio.patch('$url', data: data).catchError((e) {
+        debugPrint('Unexpected Error==> $e');
+      });
+      if (response.statusCode == 200) {
+        return RequestResponse.fromJson(response.data);
+      } else if (response.statusCode == 500) {
+        return RequestResponse(false, error: 'Server Error');
+      } else {
+        return RequestResponse(false, error: 'Network Error');
+      }
+    } catch (e) {
+      return RequestResponse(false,
+          error: "An unexpected error occured, please try again.", data: null);
+    }
+  }
+
   ///
   /// Get Request
   ///
