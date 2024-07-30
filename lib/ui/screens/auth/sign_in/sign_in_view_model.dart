@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pickmed/core/model/clinic_staff.dart';
+import 'package:pickmed/core/model/user_profile.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
 import 'package:pickmed/core/services/data_base_services.dart';
 import 'package:pickmed/core/services/local_storage.dart';
@@ -56,7 +57,7 @@ class SignInViewModel extends BaseViewModel {
     authResponse = await db.loginClinicUser(signInBody);
     setState(ViewState.idle);
     if (authResponse.success) {
-      authServices.clinicStaff = authResponse.clinicStaff ?? ClinicStaff();
+      authServices.userProfile = authResponse.userProfile ?? UserProfile();
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen2()),

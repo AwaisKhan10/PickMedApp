@@ -8,6 +8,7 @@ import 'package:pickmed/core/model/response/auth_response.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
 import 'package:pickmed/core/services/auth_serives.dart';
 import 'package:pickmed/locator.dart';
+import 'package:pickmed/ui/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:pickmed/ui/screens/root/root_screen.dart';
 
 class SignUpViewModel extends BaseViewModel {
@@ -30,10 +31,12 @@ class SignUpViewModel extends BaseViewModel {
     authResponse = await authServices.signUpUser(signUpBody);
     setState(ViewState.idle);
     if (authResponse.success) {
-      Get.offAll(() => const RootScreen());
+      Get.snackbar("Success!", "you have successfully create an account",
+          colorText: whiteColor, backgroundColor: blackColor);
+      Get.offAll(() => SignInScreen());
     } else {
       Get.snackbar("Error!", "${authResponse.error}",
-          colorText: blueColor, backgroundColor: blackColor);
+          colorText: whiteColor, backgroundColor: blackColor);
     }
   }
 }
