@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:pickmed/core/model/clinic_staff.dart';
+import 'package:pickmed/core/model/user_profile.dart';
 import 'package:pickmed/core/others/base_view_model.dart';
 import 'package:pickmed/core/services/auth_serives.dart';
 import 'package:pickmed/core/services/local_storage.dart';
@@ -11,6 +13,8 @@ class HomeViewModel extends BaseViewModel {
 
   logout() {
     _localStorageService.accessToken = null;
+    authService.userProfile = UserProfile();
+    authService.clinicStaff = ClinicStaff();
     Get.offAll(SignInScreen());
   }
 }

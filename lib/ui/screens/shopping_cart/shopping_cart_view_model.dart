@@ -45,25 +45,44 @@ class ShoppingCartViewModel extends BaseViewModel {
   }
 
   // Increment the quantity of a specific item
-  void increment(int index) {
-    if (index >= 0 && index < quantities.length) {
-      quantities[index]++;
-      cartItems[index].subtotal = quantities[index];
-      // shoppingCartList[index].quantity = quantities[index];
-      notifyListeners();
+  // void increment(int index) {
+  //   if (index >= 0 && index < quantities.length) {
+  //     quantities[index]++;
+  //     cartItems[index].cartQuantity = cartItems[index].cartQuantity! + 1;
+  //     cartItems[index].subtotal = quantities[index];
+  //     // shoppingCartList[index].quantity = quantities[index];
+  //     notifyListeners();
+  //   }
+  // }
+
+  void increment(int index) async {
+    setState(ViewState.busy);
+    cartItems[index].cartQuantity = cartItems[index].cartQuantity! + 1;
+    totalPrice = totalPrice + cartItems[index].price!;
+    setState(ViewState.idle);
+    notifyListeners();
+  }
+
+  void decrement(int index) async {
+    setState(ViewState.busy);
+    if (cartItems[index].cartQuantity! > 1) {
+      cartItems[index].cartQuantity = cartItems[index].cartQuantity! - 1;
+      totalPrice = totalPrice - cartItems[index].price!;
     }
+    setState(ViewState.idle);
+    notifyListeners();
   }
 
   // Decrement the quantity of a specific item
-  void decrement(int index) {
-    if (index >= 0 && index < quantities.length && quantities[index] > 1) {
-      quantities[index]--;
-
-      cartItems[index].subtotal = quantities[index];
-      // shoppingCartList[index].quantity = quantities[index];
-      notifyListeners();
-    }
-  }
+  // void decrement(int index) {
+  //   if (index >= 0 && index < quantities.length && quantities[index] > 1) {
+  //     quantities[index]--;
+  //     cartItems[index].cartQuantity = cartItems[index].cartQuantity! - 1;
+  //     cartItems[index].subtotal = quantities[index];
+  //     // shoppingCartList[index].quantity = quantities[index];
+  //     notifyListeners();
+  //   }
+  // }
 
   // Remove an item from the shoppingCartList by index
   void removeItem(int index) {
@@ -76,9 +95,9 @@ class ShoppingCartViewModel extends BaseViewModel {
 
   emptyCart() async {
     setState(ViewState.busy);
-    bool isDone = await db.emptyCart();
+    bool isDone = await db.checkout();
     if (isDone) {
-      bool isDone = await db.checkout();
+      bool isDone = await db.emptyCart();
       if (isDone) {
         Get.offAll(const RootScreen());
       }

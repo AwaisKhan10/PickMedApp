@@ -49,7 +49,8 @@ class ProfileScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Text(
-                      '${model.authService.userProfile.fullName}',
+                      model.authService.userProfile.fullName ??
+                          "Klinikandaremba",
                       style: style22.copyWith(fontWeight: FontWeight.w400),
                     ),
                     SizedBox(

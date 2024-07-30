@@ -102,4 +102,9 @@ class AuthServices {
     }
     return response;
   }
+
+  logout() {
+    _localStorageService.accessToken = null;
+    _localStorageService.setUserid = null;
+  }
 }

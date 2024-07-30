@@ -82,7 +82,9 @@ class ApiServices {
       });
       if (response.statusCode == 200) {
         return RequestResponse.fromJson(response.data);
-      } else if (response.statusCode == 500) {
+      }else if (response.statusCode == 404) {
+        return RequestResponse(false, error: 'Data Not Found');
+      }  else if (response.statusCode == 500) {
         return RequestResponse(false, error: 'Server Error');
       } else {
         return RequestResponse(false, error: 'Network Error');

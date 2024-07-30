@@ -53,10 +53,11 @@ class DatabaseService {
   }
 
   Future<ApiBaseResponse> addMedicin(Medicine medicine) async {
+    print("medince atif=>${medicine.toJson()}");
     final RequestResponse response = await _apiServices.postRequest(
         url: '${EndPoints.baseUrl}${EndPoints.AddMedicine}',
         data: medicine.toJson());
-    log('medicine response ==> $response');
+    print('medicine response ==> ${response.data}');
     return ApiBaseResponse.fromJson(response.data);
   }
 
@@ -86,7 +87,7 @@ class DatabaseService {
   Future<MedicineResponse> getMadicinbycategory(cat) async {
     final RequestResponse response = await _apiServices.getRequest(
         url: '${EndPoints.baseUrl}medicine/category/$cat');
-    log('medicine response ==> ${response.data['success']}');
+    log('medicine response ==> ${response.data}');
     return MedicineResponse.fromJson2(response.data);
   }
 
@@ -120,6 +121,7 @@ class DatabaseService {
       url: '${EndPoints.baseUrl}${EndPoints.loginClinicUser}',
       data: body.clinicUserJson(),
     );
+    print("atif =>${response.data}");
     return AuthResponse.clinicUser(response.data);
   }
 

@@ -169,8 +169,7 @@ class MedCategoriesScreen extends StatelessWidget {
                                                         fontWeight:
                                                             FontWeight.w600)),
                                                 TextSpan(
-                                                    text:
-                                                        ' / ${model.medicins[index].categroy ?? " "}',
+                                                    text: ' / blisters',
                                                     style: style22.copyWith(
                                                       fontSize: 14.sp,
                                                     ))

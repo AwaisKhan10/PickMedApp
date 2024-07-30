@@ -5,7 +5,7 @@ import 'package:pickmed/core/model/user_profile.dart';
 class AuthResponse extends ApiBaseResponse {
   String? accessToken;
   UserProfile? userProfile;
-  ClinicStaff? clinicStaff;
+  // ClinicStaff? clinicStaff;
 
   /// Default constructor
   // ignore: use_super_parameters
@@ -22,7 +22,7 @@ class AuthResponse extends ApiBaseResponse {
   AuthResponse.clinicUser(json) : super.fromJson(json) {
     accessToken = json['token'];
     if (json['user'] != null) {
-      clinicStaff = ClinicStaff.fromJson(json['user']);
+      userProfile = UserProfile.fromJson(json['user']);
     }
   }
 }
