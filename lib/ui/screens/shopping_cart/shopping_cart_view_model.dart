@@ -1,3 +1,4 @@
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:pickmed/core/enums/view_state.dart';
 import 'package:pickmed/core/model/cart.dart';
@@ -9,6 +10,8 @@ import 'package:pickmed/ui/screens/root/root_screen.dart';
 class ShoppingCartViewModel extends BaseViewModel {
   final db = DatabaseService();
   List<Cart> cartItems = [];
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
   double totalPrice = 0.0;
 
   // List<ShoppingCart> shoppingCartList = [
@@ -26,7 +29,42 @@ class ShoppingCartViewModel extends BaseViewModel {
   ShoppingCartViewModel() {
     // Initialize quantities list with 1 for each item in shoppingCartList
     // quantities = List.filled(shoppingCartList.length, 1);
+    initializeNotifications();
     getCartItems();
+  }
+
+  Future<void> initializeNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+    );
+
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  Future<void> showNotification() async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'your_channel_id', // channel ID
+      'your_channel_name', // channel name
+      importance: Importance.max,
+      priority: Priority.high,
+      icon: "@mipmap/ic_launcher",
+      showWhen: false,
+    );
+
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0, // notification ID
+      'Order Confirmed!', // notification title
+      'Your order has been successfully checked out.', // notification body
+      platformChannelSpecifics,
+    );
   }
 
   getCartItems() async {
@@ -98,7 +136,9 @@ class ShoppingCartViewModel extends BaseViewModel {
     bool isDone = await db.checkout();
     if (isDone) {
       bool isDone = await db.emptyCart();
+
       if (isDone) {
+        showNotification();
         Get.offAll(const RootScreen());
       }
     }
